@@ -16,6 +16,31 @@ export default function Home() {
           <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
             To get started, edit the page.tsx file.
           </h1>
+
+          <h1 className="text-h1">
+          안녕하세요
+          </h1>
+
+          <h1 className="text-h2">
+          안녕하세요
+          </h1>
+
+          <h1 className="text-h3">
+          안녕하세요
+          </h1>
+
+          <h1 className="text-body1">
+          안녕하세요
+          </h1>
+
+        <h2 className="text-body2">
+          안녕하세요
+          </h2>
+
+          <h2 className="text-caption">
+          안녕하세요
+          </h2>
+
           <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
             Looking for a starting point or more instructions? Head over to{" "}
             <a
