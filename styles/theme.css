@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -66,6 +68,27 @@
   /* background/foreground */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+
+  /* ---------------------------------- */
+  /* 타이포그래피 토큰                      */
+  /* ---------------------------------- */
+
+  /* title */
+  --text-h1: 28px; /* 페이지 타이틀, 프로필 타이틀 */
+  --text-h2: 24px; /* 가격 텍스트 */
+  --text-h3: 20px; /* 카드 타이틀, 필터 타이틀 */
+  --text-h4: 18px; /* 모달 타이틀, 섹션 서브타이틀 */
+
+  /* body */
+  --text-body1: 16px; 
+  /* 본문 텍스트, 인풋 라벨, 네비게이션 메뉴, 설명(Description), 메타 정보(시간/위치), Form 관련 텍스트 */
+  --text-body2: 14px; 
+  /* 서브 버튼 라벨, 검색 placeholder, 옵션 텍스트, 태그/뱃지 텍스트, 드롭다운 항목, 페이지네이션, 알림 메시지 */
+
+  /* Caption */
+  --text-caption: 12px; 
+  /* 작은 안내 텍스트, 보조 정보, 서브 레이블 */
 }
 
 @media (prefers-color-scheme: dark) {
