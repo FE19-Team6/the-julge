@@ -25,4 +25,4 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Run TypeScript
-        run: pnpm exec next type-check
+        run: pnpm tsc --noEmit
