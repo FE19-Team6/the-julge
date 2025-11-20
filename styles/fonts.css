@@ -1,0 +1,74 @@
+/* @font-face 선언 */
+@font-face {
+  font-family: 'Noto Sans KR';
+  src: url('/fonts/NotoSansKR-Regular.woff2') format('woff2');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  src: url('/fonts/NotoSansKR-Medium.woff2') format('woff2');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  src: url('/fonts/NotoSansKR-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  src: url('/fonts/NotoSansKR-Bold.woff2') format('woff2');
+  font-weight: 700;
+}
+
+/* 기본 폰트 설정 */
+body {
+  font-family: 'Noto Sans KR', -apple-system, sans-serif;
+  font-size: var(--text-body1);
+  color: var(--color-gray-900);
+}
+
+/* 폰트 프리셋 */
+.text-h1 {
+  font-size: var(--text-h1);
+  font-weight: var(--weight-h1);
+  letter-spacing: var(--tracking-h1);
+}
+
+.text-h2 {
+  font-size: var(--text-h2);
+  font-weight: var(--weight-h2);
+  letter-spacing: var(--tracking-h2);
+}
+
+.text-h3 {
+  font-size: var(--text-h3);
+  font-weight: var(--weight-h3);
+  letter-spacing: var(--tracking-h3);
+}
+
+.text-h4 {
+  font-size: var(--text-h4);
+  font-weight: var(--weight-h4);
+  letter-spacing: var(--tracking-h4);
+}
+
+.text-body1 {
+  font-size: var(--text-body1);
+  font-weight: var(--weight-body1);
+  letter-spacing: var(--tracking-body);
+}
+
+.text-body2 {
+  font-size: var(--text-body2);
+  font-weight: var(--weight-body2);
+  letter-spacing: var(--tracking-body);
+}
+
+.text-caption {
+  font-size: var(--text-caption);
+  font-weight: var(--weight-caption);
+  letter-spacing: var(--tracking-caption);
+}
