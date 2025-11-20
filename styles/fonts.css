@@ -1,4 +1,4 @@
-/* 기본 폰트 설정 */
+/* @font-face 선언 */
 @font-face {
   font-family: 'Noto Sans KR';
   src: url('/fonts/NotoSansKR-Regular.woff2') format('woff2');
@@ -23,60 +23,50 @@
   font-weight: 700;
 }
 
+/* 기본 폰트 설정 */
 body {
   font-family: 'Noto Sans KR', -apple-system, sans-serif;
   font-size: var(--text-body1);
   color: var(--color-gray-900);
 }
 
-
-/* ---------------------------------- */
-/* 폰트 프리셋                           */
-/* ---------------------------------- */
-
-/* 페이지 타이틀 28px */
+/* 폰트 프리셋 */
 .text-h1 {
   font-size: var(--text-h1);
   font-weight: var(--weight-h1);
   letter-spacing: var(--tracking-h1);
 }
 
-/* 주요 강조 텍스트(가격 등) 24px */
 .text-h2 {
   font-size: var(--text-h2);
   font-weight: var(--weight-h2);
   letter-spacing: var(--tracking-h2);
 }
 
-/* 카드/필터 섹션 타이틀 20px */
 .text-h3 {
   font-size: var(--text-h3);
   font-weight: var(--weight-h3);
   letter-spacing: var(--tracking-h3);
 }
 
-/* 모달 및 서브 타이틀 18px */
 .text-h4 {
   font-size: var(--text-h4);
   font-weight: var(--weight-h4);
   letter-spacing: var(--tracking-h4);
 }
 
-/* 기본 본문 16px (form 라벨, 네비게이션, 설명 등) */
 .text-body1 {
   font-size: var(--text-body1);
   font-weight: var(--weight-body1);
-  letter-spacing: var(--tracking-body1);
+  letter-spacing: var(--tracking-body);
 }
 
-/* 보조 본문 14px (버튼, 태그, 옵션 등) */
 .text-body2 {
   font-size: var(--text-body2);
   font-weight: var(--weight-body2);
-  letter-spacing: var(--tracking-body2);
+  letter-spacing: var(--tracking-body);
 }
 
-/* 보조 설명 텍스트 12px */
 .text-caption {
   font-size: var(--text-caption);
   font-weight: var(--weight-caption);

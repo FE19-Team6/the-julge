@@ -18,27 +18,27 @@ export default function Home() {
           </h1>
 
           <h1 className="text-h1">
-          안녕하세요
+          안녕하세요 text-h1
           </h1>
 
           <h1 className="text-h2">
-          안녕하세요
+          안녕하세요 text-h2
           </h1>
 
           <h1 className="text-h3">
-          안녕하세요
+          안녕하세요 text-h3
           </h1>
 
           <h1 className="text-body1">
-          안녕하세요
+          안녕하세요 text-body1
           </h1>
 
         <h2 className="text-body2">
-          안녕하세요
+          안녕하세요 text-body2
           </h2>
 
           <h2 className="text-caption">
-          안녕하세요
+          안녕하세요 text-caption
           </h2>
 
           <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">

@@ -1,87 +1,57 @@
 :root {
-
-  /* ------------------------------------------------------ */
-  /* 기본 배경 / 글자색                                      */
-  /* ------------------------------------------------------ */
-
+  /* 배경 / 글자색 */
   --background: #ffffff;
-  --foreground: #171717;
-
-
-  /* ---------------------------------- */
-  /* 컬러 토큰                            */
-  /* ---------------------------------- */
+  --foreground: #000000;
 
   /* primary */
-  --primary-900: #CB2222; /* Hover 및 Active 버튼, 강한 강조 */
-  --primary-500: #FF4040; /* 메인 CTA, 브랜드 핵심 컬러, 에러, 네거티브 텍스트 */
-  --primary-300: #FF8D72; /* 보조 버튼, 태그, 하이라이트 */
-  --primary-100: #FFEBE7; /* 섹션 구분, 네거티브 뱃지 배경 */
+  --primary-900: #cb2222; /* Hover, Active 강조 */
+  --primary-500: #ff4040; /* 메인 CTA, 에러 */
+  --primary-300: #ff8d72; /* 보조 버튼, 태그 */
+  --primary-100: #ffebe7; /* 섹션 구분, 뱃지 배경 */
 
-  --blue-500: #0080FF; /* 승인 텍스트  */
-  --blue-100: #CCE6FF; /* 승인 뱃지 배경  */
+  /* status */
+  --blue-500: #0080ff; 
+  --blue-100: #cce6ff; 
+  --green-500: #20a81e;
+  --green-100: #d4f7d4;
+  --yellow-500: #fee500;
 
-  --green-500: #20A81E; /* 대기중 텍스트 */
-  --green-100: #D4F7D4; /* 대기중 뱃지 배경 */
+  /* grayscale */
+  --gray-900: #000000; /* 본문 */
+  --gray-700: #7d7986; /* 서브 텍스트 */
+  --gray-600: #a4a1aa; /* 인풋, Ghost */
+  --gray-400: #cbc9cf; /* 보더, Inactive */
+  --gray-300: #e5e4e7; /* disabled 배경 */
+  --gray-200: #f2f2f3; /* input 배경 */
+  --gray-100: #fafafa; /* 페이지 배경 */
+  --white: #ffffff;
 
-  --yellow-500: #FEE500; /* 카카오 로그인 */
+  /* font-sizes */
+  --text-h1: 28px; /* 페이지 타이틀 */
+  --text-h2: 24px; /* 가격 */
+  --text-h3: 20px; /* 카드/필터 타이틀 */
+  --text-h4: 18px; /* 모달 타이틀 */
+  --text-body1: 16px; /* 본문, form 라벨 */
+  --text-body2: 14px; /* 서브 버튼, 태그 */
+  --text-caption: 12px; /* 보조 정보 */
 
-  --gray-900: #000000; /* 본문 텍스트 */
-  --gray-700: #7D7986; /* 서브 텍스트 */
-  --gray-600: #A4A1AA; /* 인풋 텍스트, ghost 형태 */
-  --gray-400: #CBC9CF; /* 보더, inactivate 텍스트 */
-  --gray-300: #E5E4E7; /* disabled 배경 */
-  --gray-200: #F2F2F3; /* input 배경 */
-  --gray-100: #FAFAFA; /* 페이지 배경 */
-  --white: #ffffff; /* 기본 흰색 */
-
-
-  /* ---------------------------------- */
-  /* 폰트 사이즈 토큰                       */
-  /* ---------------------------------- */
-
-  --text-h1: 28px; /* 페이지 타이틀, 프로필 타이틀 */
-  --text-h2: 24px; /* 가격 텍스트 */
-  --text-h3: 20px; /* 카드 타이틀, 필터 타이틀 */
-  --text-h4: 18px; /* 모달 타이틀, 섹션 서브타이틀 */
-  --text-body1: 16px; /* 본문 텍스트, form 라벨, 네비게이션 */
-  --text-body2: 14px; /* 서브 버튼, 태그, 옵션 텍스트 */
-  --text-caption: 12px; /* 작은 안내 텍스트, 보조 정보 */
-
-  
-  /* ---------------------------------- */
-  /* letter-spacing 토큰                 */
-  /* ---------------------------------- */
-
+   /* letter-spacing */
   --tracking-h1: -0.5px;
   --tracking-h2: -0.3px;
   --tracking-h3: -0.2px;
   --tracking-h4: -0.1px;
-  --tracking-body1: 0px;
-  --tracking-body2: 0px;
-  --tracking-caption: 0px;
+  --tracking-body: 0px;
 
-
-  /* ---------------------------------- */
-  /* weight 토큰                         */
-  /* ---------------------------------- */
-
+ /* font-weights */
   --weight-h1: 700;
   --weight-h2: 600;
   --weight-h3: 600;
   --weight-h4: 500;
-  --weight-body1: 400;
-  --weight-body2: 400;
-  --weight-caption: 400;
+  --weight-body: 400;
 }
 
-
+/* tailwind 매핑 */
 @theme inline {
-
-  /* ---------------------------------- */
-  /* 색상 매핑                            */
-  /* ---------------------------------- */
-
   --color-primary-900: var(--primary-900);
   --color-primary-500: var(--primary-500);
   --color-primary-300: var(--primary-300);
@@ -89,10 +59,8 @@
 
   --color-blue-500: var(--blue-500);
   --color-blue-100: var(--blue-100);
-
   --color-green-500: var(--green-500);
-  --color-green-100: var(--green-100);  
-
+  --color-green-100: var(--green-100);
   --color-yellow-500: var(--yellow-500);
 
   --color-gray-900: var(--gray-900);
@@ -107,11 +75,6 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-
-  /* ---------------------------------- */
-  /* 폰트 매핑                            */
-  /* ---------------------------------- */
-
   --text-h1: var(--text-h1);
   --text-h2: var(--text-h2);
   --text-h3: var(--text-h3);
@@ -120,11 +83,6 @@
   --text-body2: var(--text-body2);
   --text-caption: var(--text-caption);
 
-
-  /* ---------------------------------- */
-  /* letter-spacing 매핑                 */
-  /* ---------------------------------- */
-
   --tracking-h1: var(--tracking-h1);
   --tracking-h2: var(--tracking-h2);
   --tracking-h3: var(--tracking-h3);
@@ -132,11 +90,6 @@
   --tracking-body1: var(--tracking-body1);
   --tracking-body2: var(--tracking-body2);
   --tracking-caption: var(--tracking-caption);
-
-
-  /* ---------------------------------- */
-  /* weight 매핑                         */
-  /* ---------------------------------- */
 
   --weight-h1: var(--weight-h1);
   --weight-h2: var(--weight-h2);
@@ -148,13 +101,15 @@
 }
 
 
-/* ------------------------------------ */
-/* 다크모드 컬러                           */
-/* ------------------------------------ */
-
+/* 다크모드 */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+  }
+
+  /* 마법의 한줄 */
+  :root {
+    --color-brand: 255 102 0;
   }
 }
