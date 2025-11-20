@@ -1,5 +1,3 @@
-'use client';
-
 import axios, { AxiosInstance, InternalAxiosRequestConfig , AxiosError, AxiosResponse } from 'axios';
 
 // axios 인스턴스 생성
