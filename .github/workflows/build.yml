@@ -1,5 +1,5 @@
 # .github/workflows/build.yml
-name: Build Test
+name: Webhook test
 
 on:
   pull_request:
