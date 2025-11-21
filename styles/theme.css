@@ -4,7 +4,6 @@
   --foreground: #000000;
 
   /* primary */
-<<<<<<< HEAD
   --red-50: #ea3c12;
   --red-40: #ff4040;
   --red-30: #ff8d72;
@@ -12,25 +11,11 @@
   --red-10: #ffebe7;
 
   /* status */
-  --blue-20: #0080ff; 
-  --blue-10: #cce6ff; 
+  --blue-20: #0080ff;
+  --blue-10: #cce6ff;
   --green-20: #20a81e;
   --green-10: #d4f7d4;
   --kakao: #fee500;
-=======
-  --primary-900: #cb2222; /* Hover, Active 강조 */
-  --primary-700: #ea3c12;
-  --primary-500: #ff4040; /* 메인 CTA, 에러 */
-  --primary-300: #ff8d72; /* 보조 버튼, 태그 */
-  --primary-100: #ffebe7; /* 섹션 구분, 뱃지 배경 */
-
-  /* status */
-  --blue-500: #0080ff;
-  --blue-100: #cce6ff;
-  --green-500: #20a81e;
-  --green-100: #d4f7d4;
-  --yellow-500: #fee500;
->>>>>>> 18da2ca (refactor: uncomment button clsx (#114))
 
   /* grayscale */
   --black: #000000;
@@ -72,20 +57,12 @@
 
 /* tailwind 매핑 */
 @theme inline {
-<<<<<<< HEAD
   /* colors */
   --color-red-50: var(--red-50);
   --color-red-40: var(--red-40);
   --color-red-30: var(--red-30);
   --color-red-20: var(--red-20);
   --color-red-10: var(--red-10);
-=======
-  --color-primary-900: var(--primary-900);
-  --color-primary-700: var(--primary-700);
-  --color-primary-500: var(--primary-500);
-  --color-primary-300: var(--primary-300);
-  --color-primary-100: var(--primary-100);
->>>>>>> 18da2ca (refactor: uncomment button clsx (#114))
 
   --color-blue-20: var(--blue-20);
   --color-blue-10: var(--blue-10);
