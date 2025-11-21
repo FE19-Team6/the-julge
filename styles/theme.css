@@ -11,8 +11,8 @@
   --red-10: #ffebe7;
 
   /* status */
-  --blue-20: #0080ff; 
-  --blue-10: #cce6ff; 
+  --blue-20: #0080ff;
+  --blue-10: #cce6ff;
   --green-20: #20a81e;
   --green-10: #d4f7d4;
   --kakao: #fee500;
@@ -108,6 +108,8 @@
   --weight-body1: var(--weight-body1);
   --weight-body2: var(--weight-body2);
   --weight-caption: var(--weight-caption);
+
+  --font-sans: "Noto Sans KR", sans-serif;
 }
 
 /* 다크모드 */
