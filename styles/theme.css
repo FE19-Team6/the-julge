@@ -108,6 +108,8 @@
   --weight-body1: var(--weight-body1);
   --weight-body2: var(--weight-body2);
   --weight-caption: var(--weight-caption);
+
+  --font-sans: "Noto Sans KR", sans-serif;
 }
 
 /* 다크모드 */

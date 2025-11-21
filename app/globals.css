@@ -4,9 +4,9 @@
 @import "../styles/theme.css"; /* 디자인 토큰 */
 @import "../styles/fonts.css"; /* @font-face 및 폰트 프리셋 매핑 */
 
-
 /* 전역 레이아웃 */
-html, body {
+html,
+body {
   width: 100%;
   min-height: 100%;
   margin: 0;
@@ -14,6 +14,7 @@ html, body {
 
   background: var(--color-background);
   color: var(--color-foreground);
+  font-family: var(--font-sans);
 
   /* 텍스트 렌더링 최적화 */
   -webkit-font-smoothing: antialiased;
@@ -29,7 +30,23 @@ html, body {
 }
 
 /* 반응형 확장 */
-@media (min-width: 640px) { .container { max-width: 640px; } }
-@media (min-width: 768px) { .container { max-width: 768px; } }
-@media (min-width: 1024px) { .container { max-width: 1024px; } }
-@media (min-width: 1280px) { .container { max-width: 1200px; } }
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1200px;
+  }
+}
