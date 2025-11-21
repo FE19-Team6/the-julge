@@ -13,6 +13,7 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
+    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"
@@ -20,7 +21,14 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "public/*": ["./public/*"]
+
+      "@/app/*": ["app/*"],
+      "@/components/*": ["components/*"],
+
+      "@/assets/*": ["src/assets/*"],
+      "@/styles/*": ["src/styles/*"],
+      "@/lib/*": ["src/lib/*"],
+      "@/types/*": ["types/*"]
     }
   },
   "include": [
