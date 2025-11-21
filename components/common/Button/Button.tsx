@@ -4,24 +4,21 @@ import clsx from "clsx";
 import { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
 import { BUTTON_VARIANTS, BUTTON_SIZES, BUTTON_BASE } from "./buttonVariants";
 
-export type ButtonProps<T extends ElementType> = {
-  as?: T;
+export type ButtonProps = ComponentPropsWithoutRef<"button"> & {
   children: ReactNode;
   variant?: "primary" | "outline" | "disabled";
   size?: "lg" | "md" | "sm" | "full";
-} & ComponentPropsWithoutRef<T>;
+};
 
-const Button = <T extends ElementType = "button">({
-  as,
+const Button = ({
   children,
   variant = "primary",
   size = "md",
   className,
   ...rest
-}: ButtonProps<T>) => {
-  const Component = as || "button";
+}: ButtonProps) => {
   return (
-    <Component
+    <button
       {...rest}
       className={clsx(
         BUTTON_BASE,
@@ -31,7 +28,7 @@ const Button = <T extends ElementType = "button">({
       )}
     >
       {children}
-    </Component>
+    </button>
   );
 };
 

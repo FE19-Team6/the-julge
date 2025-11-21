@@ -10,19 +10,19 @@ export const BUTTON_BASE = `
 // "primary" | "outline" | "disabled"
 export const BUTTON_VARIANTS = {
   primary: `
-    bg-primary-700 text-white cursor-pointer
-    hover:bg-white hover:text-primary-700 hover:border hover:border-primary-700 
-    active:bg-white active:text-primary-700 active:border active:border-primary-700
-    focus:bg-white focus:text-primary-700 focus:border focus:border-primary-700
+    bg-red-50 text-white cursor-pointer
+    hover:bg-white hover:text-red-50 hover:border hover:border-red-50 
+    active:bg-white active:text-red-50 active:border active:border-red-50
+    focus:bg-white focus:text-red-50 focus:border focus:border-red-50
   `,
   outline: `
-    bg-white border border-primary-700 text-primary-700 cursor-pointer
-    hover:bg-primary-700 hover:text-white
-    active:bg-primary-700 active:text-white
-    focus:bg-primary-700 focus:text-white
+    bg-white border border-red-50 text-red-50 cursor-pointer
+    hover:bg-red-50 hover:text-white
+    active:bg-red-50 active:text-white
+    focus:bg-red-50 focus:text-white
   `,
   disabled: `
-    bg-gray-600 text-white cursor-not-allowed
+    bg-gray-40 text-white cursor-not-allowed
   `,
 } as const;
 

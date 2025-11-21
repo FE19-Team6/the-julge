@@ -2,8 +2,6 @@
 
 import Button, { ButtonProps } from "./Button";
 
-export default function ButtonClient<T extends React.ElementType = "button">(
-  props: ButtonProps<T>
-) {
+export default function ButtonClient(props: ButtonProps) {
   return <Button {...props} />;
 }
