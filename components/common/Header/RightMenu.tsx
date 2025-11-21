@@ -3,9 +3,9 @@
 import Link from "next/link";
 import BellIcon from "@/src/assets/vector.svg";
 
-type HeaderState = "owner" | "worker" | "guest";
+export type HeaderState = "owner" | "worker" | "guest";
 
-interface RightMenuProps {
+export interface RightMenuProps {
   state: HeaderState;
   onLogout: () => void;
   onOpenNotification: () => void;

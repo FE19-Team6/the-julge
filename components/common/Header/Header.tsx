@@ -9,9 +9,9 @@ import SearchIcon from "@/src/assets/search.svg";
 
 import RightMenu from "./RightMenu";
 
-type HeaderState = "owner" | "worker" | "guest";
+export type HeaderState = "owner" | "worker" | "guest";
 
-interface HeaderProps {
+export interface HeaderProps {
   state: HeaderState;
   onLogout: () => void;
   onOpenNotification: () => void;
