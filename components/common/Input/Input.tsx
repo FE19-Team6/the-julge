@@ -1,42 +1,42 @@
 "use client";
 
-import React from "react";
+import { ComponentPropsWithoutRef, ElementType, useId } from "react";
+import clsx from "clsx";
 
-interface InputProps {
+export type InputProps<T extends ElementType> = {
+  as?: T;
   label: string;
-  type?: string;
-  value: string;
-  placeholder?: string;
   error?: string;
   suffix?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+} & ComponentPropsWithoutRef<T>;
 
-const Input = ({
+const Input = <T extends ElementType = "input">({
+  as,
   label,
-  type = "text",
-  value,
-  placeholder,
   error,
   suffix,
-  onChange,
-}: InputProps) => {
+  id,
+  className,
+  ...rest
+}: InputProps<T>) => {
+  const Component = as || "input";
+  const autoId = useId();
+  const inputId = id || autoId;
+
   return (
     <div className="flex flex-col gap-1 w-full">
-      <label className="text-sm font-medium">{label}</label>
+      <label htmlFor={inputId} className="text-sm font-medium">
+        {label}
+      </label>
 
       <div
-        className={`flex items-center bg-white border rounded-lg px-4 h-14
-        ${error ? "border-red-500" : "border-gray-300"}
-      `}
+        className={clsx(
+          "flex items-center bg-white border rounded-lg px-4 h-14",
+          error ? "border-red-500" : "border-gray-300",
+          className
+        )}
       >
-        <input
-          type={type}
-          value={value}
-          onChange={onChange}
-          placeholder={placeholder}
-          className="w-full outline-none"
-        />
+        <Component id={inputId} {...rest} className="w-full outline-none" />
 
         {suffix && <span className="text-black ml-2">{suffix}</span>}
       </div>
