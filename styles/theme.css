@@ -4,77 +4,85 @@
   --foreground: #000000;
 
   /* primary */
-  --primary-900: #cb2222; /* Hover, Active 강조 */
-  --primary-500: #ff4040; /* 메인 CTA, 에러 */
-  --primary-300: #ff8d72; /* 보조 버튼, 태그 */
-  --primary-100: #ffebe7; /* 섹션 구분, 뱃지 배경 */
+  --red-50: #ea3c12;
+  --red-40: #ff4040;
+  --red-30: #ff8d72;
+  --red-20: #ffaf9b;
+  --red-10: #ffebe7;
 
   /* status */
-  --blue-500: #0080ff; 
-  --blue-100: #cce6ff; 
-  --green-500: #20a81e;
-  --green-100: #d4f7d4;
-  --yellow-500: #fee500;
+  --blue-20: #0080ff; 
+  --blue-10: #cce6ff; 
+  --green-20: #20a81e;
+  --green-10: #d4f7d4;
+  --kakao: #fee500;
 
   /* grayscale */
-  --gray-900: #000000; /* 본문 */
-  --gray-700: #7d7986; /* 서브 텍스트 */
-  --gray-600: #a4a1aa; /* 인풋, Ghost */
-  --gray-400: #cbc9cf; /* 보더, Inactive */
-  --gray-300: #e5e4e7; /* disabled 배경 */
-  --gray-200: #f2f2f3; /* input 배경 */
-  --gray-100: #fafafa; /* 페이지 배경 */
+  --black: #000000;
+  --gray-50: #7d7986;
+  --gray-40: #a4a1aa;
+  --gray-30: #cbc9cf;
+  --gray-20: #e5e4e7;
+  --gray-10: #f2f2f3;
+  --gray-5: #fafafa;
   --white: #ffffff;
 
   /* font-sizes */
-  --text-h1: 28px; /* 페이지 타이틀 */
-  --text-h2: 24px; /* 가격 */
-  --text-h3: 20px; /* 카드/필터 타이틀 */
-  --text-h4: 18px; /* 모달 타이틀 */
-  --text-body1: 16px; /* 본문, form 라벨 */
-  --text-body2: 14px; /* 서브 버튼, 태그 */
-  --text-caption: 12px; /* 보조 정보 */
+  --text-h1: 28px;
+  --text-h2: 24px;
+  --text-h3: 20px;
+  --text-h4: 18px;
+  --text-body1: 16px;
+  --text-body2: 14px;
+  --text-caption: 12px;
 
-   /* letter-spacing */
+  /* letter-spacing */
   --tracking-h1: -0.5px;
   --tracking-h2: -0.3px;
   --tracking-h3: -0.2px;
   --tracking-h4: -0.1px;
-  --tracking-body: 0px;
+  --tracking-body1: 0px;
+  --tracking-body2: 0px;
+  --tracking-caption: 0px;
 
- /* font-weights */
+  /* font-weights */
   --weight-h1: 700;
   --weight-h2: 600;
   --weight-h3: 600;
   --weight-h4: 500;
-  --weight-body: 400;
+  --weight-body1: 400;
+  --weight-body2: 400;
+  --weight-caption: 400;
 }
 
 /* tailwind 매핑 */
 @theme inline {
-  --color-primary-900: var(--primary-900);
-  --color-primary-500: var(--primary-500);
-  --color-primary-300: var(--primary-300);
-  --color-primary-100: var(--primary-100);
+  /* colors */
+  --color-red-50: var(--red-50);
+  --color-red-40: var(--red-40);
+  --color-red-30: var(--red-30);
+  --color-red-20: var(--red-20);
+  --color-red-10: var(--red-10);
 
-  --color-blue-500: var(--blue-500);
-  --color-blue-100: var(--blue-100);
-  --color-green-500: var(--green-500);
-  --color-green-100: var(--green-100);
-  --color-yellow-500: var(--yellow-500);
+  --color-blue-20: var(--blue-20);
+  --color-blue-10: var(--blue-10);
+  --color-green-20: var(--green-20);
+  --color-green-10: var(--green-10);
+  --color-kakao: var(--kakao);
 
-  --color-gray-900: var(--gray-900);
-  --color-gray-700: var(--gray-700);
-  --color-gray-600: var(--gray-600);
-  --color-gray-400: var(--gray-400);
-  --color-gray-300: var(--gray-300);
-  --color-gray-200: var(--gray-200);
-  --color-gray-100: var(--gray-100);
+  --color-black: var(--black);
+  --color-gray-50: var(--gray-50);
+  --color-gray-40: var(--gray-40);
+  --color-gray-30: var(--gray-30);
+  --color-gray-20: var(--gray-20);
+  --color-gray-10: var(--gray-10);
+  --color-gray-5: var(--gray-5);
   --color-white: var(--white);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
+  /* font-sizes */
   --text-h1: var(--text-h1);
   --text-h2: var(--text-h2);
   --text-h3: var(--text-h3);
@@ -83,6 +91,7 @@
   --text-body2: var(--text-body2);
   --text-caption: var(--text-caption);
 
+  /* letter-spacing */
   --tracking-h1: var(--tracking-h1);
   --tracking-h2: var(--tracking-h2);
   --tracking-h3: var(--tracking-h3);
@@ -91,6 +100,7 @@
   --tracking-body2: var(--tracking-body2);
   --tracking-caption: var(--tracking-caption);
 
+  /* font-weights */
   --weight-h1: var(--weight-h1);
   --weight-h2: var(--weight-h2);
   --weight-h3: var(--weight-h3);
@@ -100,16 +110,10 @@
   --weight-caption: var(--weight-caption);
 }
 
-
 /* 다크모드 */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
-  }
-
-  /* 마법의 한줄 */
-  :root {
-    --color-brand: 255 102 0;
   }
 }
