@@ -5,13 +5,22 @@ import Button from "../Button/Button";
 import CheckIcon from "@/src/assets/check.svg";
 import ExclamationIcon from "@/src/assets/exclamation.svg";
 
-export interface ModalProps {
-  isOpen: boolean;
-  option: "confirm" | "action";
-  message: string;
+type ConfirmModalProps = {
+  option: "confirm";
   onConfirm: () => void;
-  onCancel?: () => void;
-}
+  onCancel?: never;
+};
+
+type ActionModalProps = {
+  option: "action";
+  onConfirm: () => void;
+  onCancel: () => void;
+};
+
+export type ModalProps = {
+  isOpen: boolean;
+  message: string;
+} & (ConfirmModalProps | ActionModalProps);
 
 const Modal = ({
   isOpen,
