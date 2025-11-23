@@ -17,7 +17,6 @@ export default function StoreImage({
   title = "",
   className,
 }: StoreImageProps) {
-  // placeholder만 따로
   if (variant === "placeholder") {
     return (
       <div
@@ -46,7 +45,6 @@ export default function StoreImage({
         className="object-cover"
       />
 
-      {/* Changeable overlay */}
       {variant === "changeable" && (
         <div className="absolute inset-0 bg-black/70 flex flex-col items-center justify-center text-white">
           <CameraIcon className="w-8 h-8 mb-2 text-white" />
@@ -54,7 +52,6 @@ export default function StoreImage({
         </div>
       )}
 
-      {/* Closed overlay */}
       {variant === "status" && (
         <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
           <span className="text-gray-30 text-h2">{title}</span>
