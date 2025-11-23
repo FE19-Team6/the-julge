@@ -3,6 +3,7 @@
 /* 디자인 시스템 import */
 @import "../styles/theme.css"; /* 디자인 토큰 */
 @import "../styles/fonts.css"; /* @font-face 및 폰트 프리셋 매핑 */
+@import "../styles/ui.css";
 
 /* 전역 레이아웃 */
 html,
