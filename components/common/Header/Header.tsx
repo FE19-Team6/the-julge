@@ -5,11 +5,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import Logo from "@/src/assets/logo.svg";
-import SearchIcon from "@/src/assets/search.svg";
+import SearchInput from "../SearchInput/SearchInput";
 
 import RightMenu from "./RightMenu";
 
-export type HeaderState = "owner" | "worker" | "guest";
+export type HeaderState = "employer" | "employee" | "guest";
 
 export interface HeaderProps {
   state: HeaderState;
@@ -20,18 +20,11 @@ export interface HeaderProps {
 const Header = ({ state, onLogout, onOpenNotification }: HeaderProps) => {
   const router = useRouter();
   const [search, setSearch] = useState("");
-  const keyword = search.trim();
-  const encodedKeyword = encodeURIComponent(keyword);
 
-  const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && keyword) {
-      router.push(`/search?keyword=${encodedKeyword}`);
-    }
-  };
-
-  const handleIconClick = () => {
-    if (!keyword) return;
-    router.push(`/search?keyword=${encodedKeyword}`);
+  const handleSearch = (query: string) => {
+    const encoded = encodeURIComponent(query.trim());
+    if (!encoded) return;
+    router.push(`/search?keyword=${encoded}`);
   };
 
   return (
@@ -43,19 +36,12 @@ const Header = ({ state, onLogout, onOpenNotification }: HeaderProps) => {
 
       {/* 검색바 */}
       <div className="flex-1 flex justify-center px-10">
-        <div className="w-full max-w-[450px] flex items-center bg-gray-100 rounded-[10px] px-4 h-11">
-          <button type="button" onClick={handleIconClick}>
-            <SearchIcon className="w-5 h-5 text-gray-400 mr-3" />
-          </button>
-          <input
-            type="text"
-            className="w-full bg-transparent outline-none text-gray-700"
-            placeholder="가게 이름으로 찾아보세요"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            onKeyDown={handleSearch}
-          />
-        </div>
+        <SearchInput
+          value={search}
+          onChange={setSearch}
+          onSearch={handleSearch}
+          size="web"
+        />
       </div>
 
       {/* 오른쪽 메뉴 */}

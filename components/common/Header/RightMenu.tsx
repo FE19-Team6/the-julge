@@ -3,7 +3,7 @@
 import Link from "next/link";
 import BellIcon from "@/src/assets/vector.svg";
 
-export type HeaderState = "owner" | "worker" | "guest";
+export type HeaderState = "employer" | "employee" | "guest";
 
 export interface RightMenuProps {
   state: HeaderState;
@@ -15,7 +15,7 @@ const RightMenu = ({ state, onLogout, onOpenNotification }: RightMenuProps) => {
   return (
     <div className="flex items-center gap-6 text-gray-700">
       {/* 사장님 로그인 */}
-      {state === "owner" && (
+      {state === "employer" && (
         <>
           <Link
             href="/storeInfoDetail"
@@ -41,7 +41,7 @@ const RightMenu = ({ state, onLogout, onOpenNotification }: RightMenuProps) => {
       )}
 
       {/* 알바 로그인 */}
-      {state === "worker" && (
+      {state === "employee" && (
         <>
           <Link href="/profile" className="text-sm hover:text-black transition">
             내 프로필
