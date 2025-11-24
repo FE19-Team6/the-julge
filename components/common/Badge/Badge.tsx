@@ -1,5 +1,3 @@
-"use client";
-
 import clsx from "clsx";
 import { ComponentPropsWithoutRef, ReactNode } from "react";
 import ArrowUpIcon from "@/src/assets/arrow-up.svg";
