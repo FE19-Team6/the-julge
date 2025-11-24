@@ -1,6 +1,4 @@
-"use client";
-
-import { useState, useId, ComponentPropsWithoutRef, ElementType } from "react";
+import { useState, useId } from "react";
 import clsx from "clsx";
 
 import ArrowDown from "@/src/assets/arrow-down.svg";
@@ -11,8 +9,7 @@ export type DropdownOption = {
   value: string;
 };
 
-export type DropdownProps<T extends ElementType = "div"> = {
-  as?: T;
+export type DropdownProps = {
   label: string;
   value?: string;
   options: DropdownOption[];
@@ -20,10 +17,9 @@ export type DropdownProps<T extends ElementType = "div"> = {
   error?: string;
   onChangeValue: (value: string) => void;
   className?: string;
-} & ComponentPropsWithoutRef<T>;
+};
 
-const Dropdown = <T extends ElementType = "div">({
-  as,
+const Dropdown = ({
   label,
   value,
   options,
@@ -31,14 +27,10 @@ const Dropdown = <T extends ElementType = "div">({
   error,
   onChangeValue,
   className,
-  id,
-  ...rest
-}: DropdownProps<T>) => {
-  const Component = (as || "div") as "div";
-  const autoId = useId();
-  const dropdownId = id || autoId;
-
+}: DropdownProps) => {
+  const dropdownId = useId();
   const [isOpen, setIsOpen] = useState(false);
+
   const selectedOption = options.find((o) => o.value === value);
 
   const toggleOpen = () => {
@@ -51,10 +43,7 @@ const Dropdown = <T extends ElementType = "div">({
   };
 
   return (
-    <Component
-      {...rest}
-      className={clsx("w-full flex flex-col relative", className)}
-    >
+    <div className={clsx("w-full flex flex-col relative", className)}>
       <label
         htmlFor={dropdownId}
         className="text-body2 font-medium text-black mb-1"
@@ -117,7 +106,7 @@ const Dropdown = <T extends ElementType = "div">({
       )}
 
       {error && <p className="mt-1 text-caption text-red-50">{error}</p>}
-    </Component>
+    </div>
   );
 };
 
