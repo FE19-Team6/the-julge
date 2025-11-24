@@ -5,26 +5,29 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import Logo from "@/src/assets/logo.svg";
-import SearchInput from "../SearchInput/SearchInput";
-
+import SearchInput from "@/components/common/SearchInput/SearchInput";
 import RightMenu from "./RightMenu";
 
-export type HeaderState = "employer" | "employee" | "guest";
+export type HeaderState = "employer" | "employee";
 
 export interface HeaderProps {
-  state: HeaderState;
+  state: HeaderState | null;
   onLogout: () => void;
   onOpenNotification: () => void;
 }
 
-const Header = ({ state, onLogout, onOpenNotification }: HeaderProps) => {
+export default function Header({
+  state,
+  onLogout,
+  onOpenNotification,
+}: HeaderProps) {
   const router = useRouter();
   const [search, setSearch] = useState("");
 
   const handleSearch = (query: string) => {
-    const encoded = encodeURIComponent(query.trim());
-    if (!encoded) return;
-    router.push(`/search?keyword=${encoded}`);
+    const keyword = encodeURIComponent(query.trim());
+    if (!keyword) return;
+    router.push(`/search?keyword=${keyword}`);
   };
 
   return (
@@ -52,6 +55,4 @@ const Header = ({ state, onLogout, onOpenNotification }: HeaderProps) => {
       />
     </header>
   );
-};
-
-export default Header;
+}
