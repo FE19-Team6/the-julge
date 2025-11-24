@@ -36,7 +36,7 @@ export default function SearchInput({
 }: SearchInputProps) {
   const [isFocused, setIsFocused] = useState(false);
 
-// 공통 검색 로직
+  // 공통 검색 로직
   const handleSearch = () => {
     const trimText = value.trim();
     if (!trimText) return;
@@ -62,17 +62,17 @@ export default function SearchInput({
         placeholder={placeholder}
         aria-label="검색어 입력"
         className={clsx(
-          // 공통 스타일 
+          // 공통 스타일
           "text-black bg-gray-10 rounded-[8px]",
           "pl-4 pr-12 transition-all outline-none border",
           "placeholder:text-gray-40",
-          // 사이즈별 스타일 
+          // 사이즈별 스타일
           SIZE_CONFIG[size].input,
-          // 포커스 스타일 
-          isFocused 
-            ? "border-gray-50 ring-1 ring-gray-100" 
+          // 포커스 스타일
+          isFocused
+            ? "border-gray-50 ring-1 ring-gray-100"
             : "border-transparent"
-          )}
+        )}
       />
 
       {/* 버튼 클릭 시 검색 */}
