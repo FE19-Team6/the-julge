@@ -1,0 +1,22 @@
+/* Textarea용 scrollbar*/
+@utility scrollbar {
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 3px 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--gray-30);
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 3px solid transparent;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--gray-40);
+  }
+}

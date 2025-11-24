@@ -1,24 +1,23 @@
 import clsx from "clsx";
+import Link from "next/link";
 import { ComponentPropsWithoutRef, ReactNode } from "react";
 import { BUTTON_VARIANTS, BUTTON_SIZES, BUTTON_BASE } from "./buttonVariants";
 
-export type ButtonProps = ComponentPropsWithoutRef<"button"> & {
+export type LinkButtonProps = ComponentPropsWithoutRef<typeof Link> & {
   children: ReactNode;
   variant?: "primary" | "outline" | "disabled";
   size?: "lg" | "md" | "sm" | "full";
 };
 
-const Button = ({
+const LinkButton = ({
   children,
-  type = "button",
   variant = "primary",
   size = "md",
   className,
   ...rest
-}: ButtonProps) => {
+}: LinkButtonProps) => {
   return (
-    <button
-      type={type}
+    <Link
       {...rest}
       className={clsx(
         BUTTON_BASE,
@@ -28,8 +27,8 @@ const Button = ({
       )}
     >
       {children}
-    </button>
+    </Link>
   );
 };
 
-export default Button;
+export default LinkButton;
