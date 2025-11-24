@@ -50,14 +50,6 @@ export default function SearchInput({
     }
   };
 
-  // button에서 Enter/Space로 검색
-  const handleIconKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      handleSearch();
-    }
-  };
-
   return (
     <div className={clsx("relative w-full", SIZE_CONFIG[size].wrapper)}>
       <input
@@ -86,12 +78,7 @@ export default function SearchInput({
       {/* 버튼 클릭 시 검색 */}
       <button
         type="button"
-        onClick={() => {
-          const trimText = value.trim();
-          if (!trimText) return;
-          onSearch(trimText);
-        }}
-        onKeyDown={handleIconKeyDown}
+        onClick={handleSearch}
         className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer hover:opacity-70 transition-opacity"
       >
         <SearchIcon className="w-5 h-5 text-gray-40" />
