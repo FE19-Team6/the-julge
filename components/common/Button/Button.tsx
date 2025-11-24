@@ -1,7 +1,5 @@
-"use client";
-
 import clsx from "clsx";
-import { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
+import { ComponentPropsWithoutRef, ReactNode } from "react";
 import { BUTTON_VARIANTS, BUTTON_SIZES, BUTTON_BASE } from "./buttonVariants";
 
 export type ButtonProps = ComponentPropsWithoutRef<"button"> & {
@@ -12,6 +10,7 @@ export type ButtonProps = ComponentPropsWithoutRef<"button"> & {
 
 const Button = ({
   children,
+  type = "button",
   variant = "primary",
   size = "md",
   className,
@@ -19,6 +18,7 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <button
+      type={type}
       {...rest}
       className={clsx(
         BUTTON_BASE,
