@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Button from "@/components/common/Button/Button";
 import { ReactNode } from "react";
@@ -33,16 +31,25 @@ const DetailCardLayout = (props: DetailCardLayoutProps) => {
   return (
     <div
       className={`
-        flex rounded-xl overflow-hidden border border-color-gray-20
-          ${props.type === "store" ? "bg-red-10" : "bg-color-white"}
         w-full
+        flex rounded-xl overflow-hidden border border-color-gray-20
+          ${props.type === "store" ? "bg-red-10" : "bg-color-white"}        
       `}
     >
       <div className="relative w-[312px] min-h-60">
         {imageSlot ? (
           imageSlot
         ) : (
-          <Image src={image} alt="card image" fill className="object-cover" />
+          <Image
+            src={image}
+            alt={
+              props.type === "store"
+                ? `${props.name} 이미지`
+                : "시급 공고 이미지"
+            }
+            fill
+            className="object-cover"
+          />
         )}
       </div>
 
