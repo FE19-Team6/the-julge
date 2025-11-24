@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { ComponentPropsWithoutRef, ReactNode } from "react";
-import ArrowUpIcon from "@/src/assets/arrow-up.svg";
+import ArrowUpIcon from "@/src/assets/arrow-badge.svg";
 
 export type BadgeVariant = "increase" | "middle" | "ended";
 
