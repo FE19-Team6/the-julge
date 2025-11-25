@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { ComponentPropsWithoutRef } from "react";
 import ClockIcon from "@/assets/clock.svg";
 import LocationIcon from "@/assets/location.svg";
-//import Badge from "@/components/common/Badge/Badge";
+import Badge from "@/components/common/Badge/Badge";
 
 export type CardProps = ComponentPropsWithoutRef<"article"> & {
   id: number; 
@@ -112,14 +112,13 @@ export default function Card({
           {/* 시급 + 배지 */}
           <div className={CARD_DESIGN.priceRow}>
             <p className={CARD_DESIGN.price}>{hourlyPay.toLocaleString()}원</p>
-            {/*{badge && !isClosed ? (
 
+            {badge && !isClosed ? (
               <Badge variant={badge.variant} className={CARD_DESIGN.badgeText}>
                 {badge.label}  
               </Badge> ) : (
                  <div className="h-9"/>   
             )}
-            */}     
           </div>
         </div>
       </article>
