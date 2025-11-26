@@ -1,4 +1,4 @@
-import { DropdownOption } from "@/components/common/Dropdown/Dropdown";
+import { DropdownOption } from "@/src/components/common/Dropdown/Dropdown";
 
 export const categoryOptions: DropdownOption[] = [
   { label: "한식", value: "한식" },

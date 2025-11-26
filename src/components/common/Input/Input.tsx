@@ -1,5 +1,3 @@
-"use client";
-
 import { ComponentPropsWithoutRef, ElementType, useId } from "react";
 import clsx from "clsx";
 

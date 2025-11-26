@@ -1,5 +1,5 @@
-import NoData from "@/components/common/NoData/NoData";
-import LinkButton from "@/components/common/Button/LinkButton";
+import NoData from "@/src/components/common/NoData/NoData";
+import LinkButton from "@/src/components/common/Button/LinkButton";
 
 export default function StoreInfoDetailEmptyPage() {
   const hasStore = false;
