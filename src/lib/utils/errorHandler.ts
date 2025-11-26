@@ -1,5 +1,4 @@
 import { AxiosError } from "axios";
-import { tokenStorage } from "@/lib/tokenStorage";
 
 // HTTP 상태 코드별 에러 메시지
 export const ERROR_MESSAGES: Record<number, string> = {
@@ -9,20 +8,6 @@ export const ERROR_MESSAGES: Record<number, string> = {
   404: "요청한 리소스를 찾을 수 없습니다.",
   408: "요청 시간이 초과되었습니다.",
   500: "서버 오류가 발생했습니다.",
-};
-
-// 401 에러 처리: 토큰이 삭제 되면 로그인 페이지로 자동 이동
-export const handleUnauthorized = () => {
-  tokenStorage.remove();
-
-  if (
-    typeof window !== "undefined" &&
-    !window.location.pathname.includes("/login")
-  ) {
-    setTimeout(() => {
-      window.location.href = "/login";
-    }, 500);
-  }
 };
 
 // 에러 객체에서 메시지 추출
