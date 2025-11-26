@@ -112,8 +112,8 @@ export default function Card({
           {/* 시급 + 배지 */}
           <div className={CARD_DESIGN.priceRow}>
             <p className={CARD_DESIGN.price}>{hourlyPay.toLocaleString()}원</p>
-            {badge && !isClosed ? (
 
+            {badge && !isClosed ? (
               <Badge variant={badge.variant} className={CARD_DESIGN.badgeText}>
                 {badge.label}  
               </Badge> ) : (
