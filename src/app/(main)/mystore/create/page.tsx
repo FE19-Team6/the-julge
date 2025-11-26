@@ -4,8 +4,8 @@ import Input from "@/components/common/Input/Input";
 import Dropdown from "@/components/common/Dropdown/Dropdown";
 import Button from "@/components/common/Button/Button";
 import StoreImage from "@/components/common/StoreImage/StoreImage";
-import { categoryOptions } from "../../../../features/stores/utils/categoryOptions";
-import { addressOptions } from "../../../../features/stores/utils/adressOptions";
+import { categoryOptions } from "../../../../features/stores/constants/categoryOptions";
+import { addressOptions } from "../../../../features/stores/constants/adressOptions";
 import Textarea from "@/components/common/Textarea";
 
 export default function StoreCreatePage() {
