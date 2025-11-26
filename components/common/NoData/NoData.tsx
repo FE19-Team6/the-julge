@@ -1,5 +1,3 @@
-"use client";
-
 import { ReactNode } from "react";
 import clsx from "clsx";
 
@@ -8,6 +6,8 @@ interface NoDataProps {
   description?: string;
   action?: ReactNode;
   className?: string;
+  titleClassName?: string;
+  descriptionClassName?: string;
 }
 
 export default function NoData({
@@ -15,6 +15,8 @@ export default function NoData({
   description,
   action,
   className,
+  titleClassName,
+  descriptionClassName,
 }: NoDataProps) {
   return (
     <div
@@ -23,9 +25,16 @@ export default function NoData({
         className
       )}
     >
-      <p className="text-black text-lg font-medium mb-2">{title}</p>
+      <p
+        className={clsx("text-black text-lg font-medium mb-2", titleClassName)}
+      >
+        {title}
+      </p>
+
       {description && (
-        <p className="text-gray-500 text-sm mb-6">{description}</p>
+        <p className={clsx("text-gray-500 text-sm mb-6", descriptionClassName)}>
+          {description}
+        </p>
       )}
       {action && <div className="flex justify-center">{action}</div>}
     </div>
