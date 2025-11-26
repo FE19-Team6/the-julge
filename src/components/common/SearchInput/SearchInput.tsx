@@ -1,3 +1,5 @@
+"useState";
+
 import clsx from "clsx";
 import { useState, KeyboardEvent } from "react";
 import SearchIcon from "@/src/assets/search.svg";

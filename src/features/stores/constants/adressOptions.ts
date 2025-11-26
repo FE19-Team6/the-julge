@@ -1,4 +1,4 @@
-import { DropdownOption } from "@/components/common/Dropdown/Dropdown";
+import { DropdownOption } from "@/src/components/common/Dropdown/Dropdown";
 
 export const addressOptions: DropdownOption[] = [
   { label: "서울시 종로구", value: "서울시 종로구" },

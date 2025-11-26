@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { DayPicker } from "react-day-picker";
 import { format } from "date-fns";
-import Button from "@/components/common/Button/Button";
+import Button from "@/src/components/common/Button/Button";
 
 export type Props = {
   label: string;

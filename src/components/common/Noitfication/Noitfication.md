@@ -7,7 +7,7 @@
 ```typescript
 import NotificationModal, {
   Notification,
-} from "@/components/common/Notification/NotificationModal";
+} from "@/src/components/common/Notification/NotificationModal";
 ```
 
 ### 2. 상태 추가

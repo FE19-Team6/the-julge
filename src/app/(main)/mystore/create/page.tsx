@@ -1,12 +1,12 @@
 "use client";
 
-import Input from "@/components/common/Input/Input";
-import Dropdown from "@/components/common/Dropdown/Dropdown";
-import Button from "@/components/common/Button/Button";
-import StoreImage from "@/components/common/StoreImage/StoreImage";
+import Input from "@/src/components/common/Input/Input";
+import Dropdown from "@/src/components/common/Dropdown/Dropdown";
+import Button from "@/src/components/common/Button/Button";
+import StoreImage from "@/src/components/common/StoreImage/StoreImage";
 import { categoryOptions } from "../../../../features/stores/constants/categoryOptions";
 import { addressOptions } from "../../../../features/stores/constants/adressOptions";
-import Textarea from "@/components/common/Textarea";
+import Textarea from "@/src/components/Textarea/Textarea";
 
 export default function StoreCreatePage() {
   return (

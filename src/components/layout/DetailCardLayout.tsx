@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Button from "@/components/common/Button/Button";
+import Button from "@/src/components/common/Button/Button";
 import { ReactNode } from "react";
 
 type StoreCardProps = {

@@ -1,6 +1,6 @@
 "use client";
 
-import Header, { HeaderState } from "@/components/common/Header/Header";
+import Header, { HeaderState } from "@/src/components/common/Header/Header";
 
 // 임시 유저 타입
 type User = {
