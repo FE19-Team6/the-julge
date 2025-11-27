@@ -1,10 +1,10 @@
-import { api } from "@/lib/axios";
+import { directApi } from "@/lib/api/axios/axios";
 import type { SignupPayload } from "@/src/features/auth/type";
 import { AxiosError } from "axios";
 
 export const signup = async (payload: SignupPayload) => {
   try {
-    const res = await api.post("/users", payload);
+    const res = await directApi.post("/users", payload);
     return res.data;
   } catch (error: unknown) {
     // AxiosError 인지 확인해서 ts 안전하게 타입 좁히기)
