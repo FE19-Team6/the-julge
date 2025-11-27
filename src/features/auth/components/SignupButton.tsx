@@ -1,13 +1,14 @@
 import Button from "@/src/components/common/Button/Button";
 
 interface SignupButtonProps {
-  onClick: () => void;
+  type?: "button" | "submit"
+  onClick?: () => void;
 }
 
-export default function SignupButton({ onClick }: SignupButtonProps) {
+export default function SignupButton({ type = "button" }: SignupButtonProps) {
   return (
     <Button
-      onClick={onClick}
+      type={type}
       variant="primary"
       size="full"
     >
