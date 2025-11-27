@@ -50,7 +50,7 @@ export default function Page() {
       <div className="w-full max-w-[350px] space-y-7">
 
         <div className="flex items-center justify-center">
-          <Link href="/storeInfoDetail">
+          <Link href="/">
             <LogoIcon className="cursor-pointer"/>
           </Link>
         </div>
