@@ -5,7 +5,7 @@ interface SignupButtonProps {
   type?: "button" | "submit";
 }
 
-export default function SignupButton({ onClick, type = "button" }: SignupButtonProps) {
+export default function SignupButton({ onClick, type = "submit" }: SignupButtonProps) {
   return (
     <Button
       onClick={onClick}
