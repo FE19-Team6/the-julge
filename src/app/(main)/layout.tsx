@@ -1,34 +1,17 @@
-"use client";
+import { getUserType } from "@/src/lib/utils/getCookies";
+import Header from "@/src/components/common/Header/Header";
 
-import Header, { HeaderState } from "@/src/components/common/Header/Header";
-
-// 임시 유저 타입
-type User = {
-  type: "owner" | "worker";
-} | null;
-
-export default function MainLayout({
+//Layout은 Server Component이고 Server Component는 async 함수로 만들 수 있습니다.
+export default async function MainLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // 안넣으면 오류생겨서 임시 유저 상태
-  const user: User = null;
-
-  const getHeaderState = (user: User): HeaderState => {
-    if (!user) return "guest";
-    return user.type === "owner" ? "owner" : "worker";
-  };
-
-  const headerState = getHeaderState(user); // ← 이거 추가!
+  const userType = await getUserType();
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header
-        state={headerState}
-        onLogout={() => console.log("logout")}
-        onOpenNotification={() => console.log("open notification")}
-      />
+      <Header userType={userType} />
       <main className="flex-1 w-full max-w-[1200px] mx-auto px-4 py-6">
         {children}
       </main>

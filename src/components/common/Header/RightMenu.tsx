@@ -1,38 +1,45 @@
 "use client";
-
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import BellIcon from "@/src/assets/vector.svg";
 
-export type HeaderState = "owner" | "worker" | "guest";
-
 export interface RightMenuProps {
-  state: HeaderState;
-  onLogout: () => void;
-  onOpenNotification: () => void;
+  userType: "employee" | "employer" | undefined;
 }
+const RightMenu = ({ userType }: RightMenuProps) => {
+  const router = useRouter();
+  // 추가: 로그아웃 핸들러
+  const handleLogout = async () => {
+    // TODO: 실제 로그아웃 API 호출
+    console.log("logout");
+    // await fetch("/api/auth/logout", { method: "POST" });
+    // router.push("/login");
+  };
 
-const RightMenu = ({ state, onLogout, onOpenNotification }: RightMenuProps) => {
+  // 추가: 알림 핸들러
+  const handleOpenNotification = () => {
+    // TODO: 알림 모달/드로어 열기
+    console.log("open notification");
+  };
+
   return (
     <div className="flex items-center gap-6 text-gray-700">
       {/* 사장님 로그인 */}
-      {state === "owner" && (
+      {userType === "employer" && (
         <>
-          <Link
-            href="/storeInfoDetail"
-            className="text-sm hover:text-black transition"
-          >
+          <Link href="/mystore" className="text-sm hover:text-black transition">
             내 가게
           </Link>
 
           <button
-            onClick={onLogout}
+            onClick={handleLogout}
             className="text-sm hover:text-black transition"
           >
             로그아웃
           </button>
 
           <button
-            onClick={onOpenNotification}
+            onClick={handleOpenNotification}
             className="hover:opacity-70 transition"
           >
             <BellIcon className="w-6 h-6" />
@@ -41,21 +48,21 @@ const RightMenu = ({ state, onLogout, onOpenNotification }: RightMenuProps) => {
       )}
 
       {/* 알바 로그인 */}
-      {state === "worker" && (
+      {userType === "employee" && (
         <>
           <Link href="/profile" className="text-sm hover:text-black transition">
             내 프로필
           </Link>
 
           <button
-            onClick={onLogout}
+            onClick={handleLogout}
             className="text-sm hover:text-black transition"
           >
             로그아웃
           </button>
 
           <button
-            onClick={onOpenNotification}
+            onClick={handleOpenNotification}
             className="hover:opacity-70 transition"
           >
             <BellIcon className="w-6 h-6" />
@@ -64,7 +71,7 @@ const RightMenu = ({ state, onLogout, onOpenNotification }: RightMenuProps) => {
       )}
 
       {/* 비로그인 */}
-      {state === "guest" && (
+      {userType === undefined && (
         <>
           <Link href="/login" className="text-sm hover:text-black transition">
             로그인
