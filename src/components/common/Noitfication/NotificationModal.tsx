@@ -16,10 +16,9 @@ type Props = {
   open: boolean;
   onClose: () => void;
   items: Notification[];
-  onDeleteAlert: (id: string) => void;
 };
 
-const NotificationModal = ({ open, onClose, items, onDeleteAlert }: Props) => {
+const NotificationModal = ({ open, onClose, items }: Props) => {
   if (!open) return null;
 
   return (
@@ -51,11 +50,7 @@ const NotificationModal = ({ open, onClose, items, onDeleteAlert }: Props) => {
       {/* 빈배열처리는 api훅에서 할예정 */}
       <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 scrollbar">
         {items.map((item) => (
-          <NotificationCard
-            key={item.id}
-            item={item}
-            onDelete={onDeleteAlert}
-          />
+          <NotificationCard key={item.id} item={item} />
         ))}
       </div>
     </div>

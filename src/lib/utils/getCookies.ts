@@ -31,3 +31,9 @@ export async function getUserType() {
     | "employer"
     | undefined;
 }
+
+// 서버 컴포넌트에서만 사용가능
+export async function getUserId() {
+  const cookieStore = await cookies();
+  return cookieStore.get("userId")?.value;
+}

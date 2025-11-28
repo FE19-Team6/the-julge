@@ -30,31 +30,33 @@ const Header = ({ userType }: HeaderProps) => {
   };
 
   return (
-    <header className="w-full h-[70px] flex items-center justify-between px-10 bg-white">
+    <header className="w-full h-[70px] bg-white">
       {/* 로고 */}
-      <Link href="/" className="cursor-pointer select-none">
-        <Logo className="w-[108.851px] h-auto" />
-      </Link>
+      <div className="max-w-[1200px] mx-auto h-full flex items-center justify-between px-4">
+        <Link href="/" className="cursor-pointer select-none">
+          <Logo className="w-[108.851px] h-auto" />
+        </Link>
 
-      {/* 검색바 */}
-      <div className="flex-1 flex justify-center px-10">
-        <div className="w-full max-w-[450px] flex items-center bg-gray-100 rounded-[10px] px-4 h-11">
-          <button type="button" onClick={handleIconClick}>
-            <SearchIcon className="w-5 h-5 text-gray-400 mr-3" />
-          </button>
-          <input
-            type="text"
-            className="w-full bg-transparent outline-none text-gray-700"
-            placeholder="가게 이름으로 찾아보세요"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            onKeyDown={handleSearch}
-          />
+        {/* 검색바 */}
+        <div className="flex-1 flex justify-center px-10">
+          <div className="w-full max-w-[450px] flex items-center bg-gray-100 rounded-[10px] px-4 h-11">
+            <button type="button" onClick={handleIconClick}>
+              <SearchIcon className="w-5 h-5 text-gray-400 mr-3" />
+            </button>
+            <input
+              type="text"
+              className="w-full bg-transparent outline-none text-gray-700"
+              placeholder="가게 이름으로 찾아보세요"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              onKeyDown={handleSearch}
+            />
+          </div>
         </div>
-      </div>
 
-      {/* 오른쪽 메뉴 */}
-      <RightMenu userType={userType} />
+        {/* 오른쪽 메뉴 */}
+        <RightMenu userType={userType} />
+      </div>
     </header>
   );
 };
