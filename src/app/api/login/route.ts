@@ -1,43 +1,36 @@
-import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
-const BACKEND_API_URL = process.env.NEXT_PUBLIC_API_URL;
+export async function POST(req: Request) {
+  const { email, password } = await req.json();
 
-export async function GET(request: NextRequest) {
-  try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get("token")?.value;
-    const userId = cookieStore.get("userId")?.value;
+  const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/token", {
+    method: "POST",
+    body: JSON.stringify({ email, password }),
+    headers: { "Content-Type": "application/json" },
+  });
 
-    if (!token || !userId) {
-      return NextResponse.json({ error: "인증되지 않음" }, { status: 401 });
-    }
+  const data = await res.json();
 
-    const { searchParams } = new URL(request.url);
-    const offset = searchParams.get("offset");
-    const limit = searchParams.get("limit");
+  // ← 여기만 수정: 백엔드 응답을 그대로 반환
+  const response = NextResponse.json(data);
 
-    const params = new URLSearchParams();
-    if (offset) params.append("offset", offset);
-    if (limit) params.append("limit", limit);
+  // 토큰 저장
+  response.cookies.set("token", data.item.token, {
+    httpOnly: true,
+    path: "/",
+  });
 
-    const response = await fetch(
-      `${BACKEND_API_URL}/users/${userId}/alerts?${params}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+  // 🔧 추가: 유저 아이디 저장
+  response.cookies.set("userId", data.item.user.item.id, {
+    httpOnly: true,
+    path: "/",
+  });
 
-    if (!response.ok) {
-      throw new Error("알림 조회 실패");
-    }
+  // 유저 타입 저장
+  response.cookies.set("userType", data.item.user.item.type, {
+    httpOnly: false, // 클라이언트에서 읽을수 있게
+    path: "/",
+  });
 
-    const data = await response.json();
-    return NextResponse.json(data);
-  } catch (error) {
-    console.error("알림 조회 실패:", error);
-    return NextResponse.json({ error: "알림 조회 실패" }, { status: 500 });
-  }
+  return response;
 }
