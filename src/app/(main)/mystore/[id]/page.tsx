@@ -28,10 +28,8 @@ export default async function Page({
     throw new Error("가게 정보를 불러오지 못했습니다.");
   }
 
-  // 🔥 타입 안전하게 response를 받는다
   const raw: StoreDetailResponse = await backendRes.json();
 
-  // 🔥 평탄화 + 타입 보장
   const item = raw.item;
 
   const store: FlattenedStoreDetail = {

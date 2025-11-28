@@ -1,10 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import DetailCardLayout from "@/src/components/layout/DetailCardLayout";
 import NoData from "@/src/components/common/NoData/NoData";
 import LinkButton from "@/src/components/common/Button/LinkButton";
-import locationIcon from "@/src/assets/location.svg";
 
 import { FlattenedStoreDetail } from "./types";
 

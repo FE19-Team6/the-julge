@@ -35,8 +35,7 @@ export default function DetailCardLayout(props: DetailCardLayoutProps) {
         ${props.type === "store" ? "bg-red-10" : "bg-white"}
       `}
     >
-      {/* 이미지 영역 */}
-      <div className="relative w-[312px] aspect-[4/3] shrink-0 bg-gray-100">
+      <div className="relative w-[312px] aspect-4/3 shrink-0 bg-gray-100">
         {imageSlot ? (
           imageSlot
         ) : (
@@ -54,9 +53,7 @@ export default function DetailCardLayout(props: DetailCardLayoutProps) {
         )}
       </div>
 
-      {/* 내용 영역 */}
       <div className="flex flex-col flex-1 p-6 gap-6 justify-between">
-        {/* Store UI */}
         {props.type === "store" && (
           <>
             <div className="flex flex-col gap-1.5">
@@ -84,7 +81,6 @@ export default function DetailCardLayout(props: DetailCardLayoutProps) {
           </>
         )}
 
-        {/* Wage UI */}
         {props.type === "wage" && (
           <>
             <div className="flex flex-col gap-1.5">
