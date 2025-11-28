@@ -1,6 +1,7 @@
 import StoreDetailClient from "./storeDetailClient";
 import { StoreDetailResponse, FlattenedStoreDetail } from "./types";
 import { getToken } from "@/src/lib/utils/getCookies";
+import { redirect } from "next/navigation";
 
 export default async function Page({
   params,
@@ -10,7 +11,9 @@ export default async function Page({
   const { id } = await params;
 
   const token = await getToken();
-  if (!token) throw new Error("로그인이 필요합니다.");
+  if (!token) {
+    return redirect("/login");
+  }
 
   const backendRes = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/shops/${id}`,
