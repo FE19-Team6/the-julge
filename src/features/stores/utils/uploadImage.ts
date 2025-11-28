@@ -1,13 +1,14 @@
 // **플로우:**
 // 1. 백엔드에서 Presigned URL 받음
-//    → "이 URL로 5분 안에 업로드하면 허용해줄게"
+//    → "이 URL로 5분 안에 업로드하면 허용해줄게" (출입증)
+//    → 아직 파일은 어디에도 없음!
 
-// 2. 프론트엔드가 S3에 직접 PUT 요청
-//    → fetch(presignedUrl, { method: "PUT", body: 파일 })
-//    → 백엔드 안 거침! S3로 바로 감
+// 2. Presigned URL로 S3에 직접 PUT 요청 (이 단계 필수!)
+//    await fetch(presignedUrl, { method: "PUT", body: file });
+//    → 이제 S3에 파일이 실제로 저장됨
 
-// 3. S3가 파일 저장
-//    → https://...amazonaws.com/파일명.png 에 저장됨
+// 3. 쿼리스트링 제거한 URL 반환
+//    → DB에 저장하고 조회 가능
 
 export async function uploadImage(file: File): Promise<string> {
   console.log("업로드 시작:", file.name);
