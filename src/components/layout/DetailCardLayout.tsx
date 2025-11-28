@@ -25,18 +25,18 @@ type WageCardProps = {
 
 export type DetailCardLayoutProps = StoreCardProps | WageCardProps;
 
-const DetailCardLayout = (props: DetailCardLayoutProps) => {
+export default function DetailCardLayout(props: DetailCardLayoutProps) {
   const { image, description, location, imageSlot } = props;
 
   return (
     <div
       className={`
-        w-full
-        flex rounded-xl overflow-hidden border border-color-gray-20
-          ${props.type === "store" ? "bg-red-10" : "bg-color-white"}        
+        w-full flex rounded-xl overflow-hidden border border-gray-200
+        ${props.type === "store" ? "bg-red-10" : "bg-white"}
       `}
     >
-      <div className="relative w-[312px] min-h-60">
+      {/* 이미지 영역 */}
+      <div className="relative w-[312px] aspect-[4/3] shrink-0 bg-gray-100">
         {imageSlot ? (
           imageSlot
         ) : (
@@ -49,15 +49,18 @@ const DetailCardLayout = (props: DetailCardLayoutProps) => {
             }
             fill
             className="object-cover"
+            sizes="312px"
           />
         )}
       </div>
 
-      <div className="flex flex-col justify-between flex-1 p-6 gap-4">
+      {/* 내용 영역 */}
+      <div className="flex flex-col flex-1 p-6 gap-6 justify-between">
+        {/* Store UI */}
         {props.type === "store" && (
           <>
             <div className="flex flex-col gap-1.5">
-              <p className="text-red-50 text-[14px] font-medium">
+              <p className="text-red-50 text-sm font-medium">
                 {props.category}
               </p>
 
@@ -65,44 +68,40 @@ const DetailCardLayout = (props: DetailCardLayoutProps) => {
                 {props.name}
               </p>
 
-              <p className="text-gray-50 text-[14px]">{location}</p>
+              <p className="text-gray-50 text-sm">{location}</p>
             </div>
 
-            <p className="text-black text-[14px] leading-relaxed">
-              {description}
-            </p>
+            <p className="text-black text-sm leading-relaxed">{description}</p>
 
             <div className="flex gap-2">
               <Button variant="outline" size="md">
                 편집하기
               </Button>
-              <Button variant="primary" className="whitespace-nowrap w-fit">
+              <Button variant="primary" size="md" className="whitespace-nowrap">
                 공고 등록하기
               </Button>
             </div>
           </>
         )}
 
+        {/* Wage UI */}
         {props.type === "wage" && (
           <>
             <div className="flex flex-col gap-1.5">
-              <p className="text-red-50 text-[14px] font-medium">시급</p>
+              <p className="text-red-50 text-sm font-medium">시급</p>
 
               <div className="flex items-center gap-2">
                 <p className="text-[24px] font-semibold text-black leading-tight">
                   {props.wage.toLocaleString()}원
                 </p>
-
                 {props.badgeSlot}
               </div>
 
-              <p className="text-gray-50 text-[14px]">{props.time}</p>
-              <p className="text-gray-50 text-[14px]">{location}</p>
+              <p className="text-gray-50 text-sm">{props.time}</p>
+              <p className="text-gray-50 text-sm">{location}</p>
             </div>
 
-            <p className="text-black text-[14px] leading-relaxed">
-              {description}
-            </p>
+            <p className="text-black text-sm leading-relaxed">{description}</p>
 
             <Button variant="primary" size="md">
               신청하기
@@ -112,6 +111,4 @@ const DetailCardLayout = (props: DetailCardLayoutProps) => {
       </div>
     </div>
   );
-};
-
-export default DetailCardLayout;
+}
