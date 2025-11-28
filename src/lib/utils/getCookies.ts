@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 
 /**
  * 서버 컴포넌트에서 쿠키에 저장된 토큰을 가져옵니다
+ * 서버 컴포넌트만 사용가능, 클라이언트 컴포넌트는 useToken 훅을 사용해주세요.
  * @returns token 문자열 또는 undefined
  *
  * 사용 예시:
@@ -16,6 +17,7 @@ export async function getToken() {
 
 /**
  * 서버 컴포넌트에서 쿠키에 저장된 유저 타입을 가져옵니다
+ * 서버 컴포넌트, 클라이언트 컴포넌트 둘 다 사용가능
  * @returns 'employee' | 'employer' | undefined
  *
  * 사용 예시:

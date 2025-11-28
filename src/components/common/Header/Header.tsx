@@ -1,23 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+import Link from "next/link";
 import Logo from "@/src/assets/logo.svg";
 import SearchIcon from "@/src/assets/search.svg";
-
 import RightMenu from "./RightMenu";
 
-export type HeaderState = "owner" | "worker" | "guest";
-
 export interface HeaderProps {
-  state: HeaderState;
-  onLogout: () => void;
-  onOpenNotification: () => void;
+  userType: "employee" | "employer" | undefined;
 }
 
-const Header = ({ state, onLogout, onOpenNotification }: HeaderProps) => {
+const Header = ({ userType }: HeaderProps) => {
   const router = useRouter();
   const [search, setSearch] = useState("");
   const keyword = search.trim();
@@ -37,7 +32,7 @@ const Header = ({ state, onLogout, onOpenNotification }: HeaderProps) => {
   return (
     <header className="w-full h-[70px] flex items-center justify-between px-10 bg-white">
       {/* 로고 */}
-      <Link href="/storeInfoDetail" className="cursor-pointer select-none">
+      <Link href="/" className="cursor-pointer select-none">
         <Logo className="w-[108.851px] h-auto" />
       </Link>
 
@@ -59,11 +54,7 @@ const Header = ({ state, onLogout, onOpenNotification }: HeaderProps) => {
       </div>
 
       {/* 오른쪽 메뉴 */}
-      <RightMenu
-        state={state}
-        onLogout={onLogout}
-        onOpenNotification={onOpenNotification}
-      />
+      <RightMenu userType={userType} />
     </header>
   );
 };
