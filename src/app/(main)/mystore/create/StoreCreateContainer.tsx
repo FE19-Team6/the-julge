@@ -13,7 +13,7 @@ import CategorySelector from "@/src/features/stores/components/CategorySelector"
 import AddressSelector from "@/src/features/stores/components/AddressSelector";
 import DetailAddressField from "@/src/features/stores/components/DetailAddressField";
 import DescriptionField from "@/src/features/stores/components/DescriptionField";
-import ImageUploader from "@/src/app/(main)/mystore/components/ImageUploader";
+import StoreImageUploader from "@/src/app/(main)/mystore/components/ImageUploader";
 import HourlyPayField from "@/src/features/stores/components/HourlyPayField";
 
 export default function StoreCreateContainer() {
@@ -78,7 +78,7 @@ export default function StoreCreateContainer() {
             onChange={handleChange}
           />
 
-          <ImageUploader file={file} onChange={setFile} />
+          <StoreImageUploader file={file} onChange={setFile} />
 
           <HourlyPayField
             value={values.originalHourlyPay}

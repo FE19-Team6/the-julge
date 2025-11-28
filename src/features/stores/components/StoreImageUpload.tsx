@@ -11,8 +11,8 @@ export default function StoreImageUploader({ file, onChangeFile }: Props) {
       <label className="mb-2 block font-medium">가게 이미지</label>
       <ImageUploader
         label="이미지 추가하기"
-        value={file}
-        onChangeValue={onChangeFile}
+        file={file}
+        onChange={onChangeFile}
       />
     </div>
   );
