@@ -1,5 +1,7 @@
 "use client";
+
 import { useRouter } from "next/navigation";
+import { authService } from "@/src/features/auth/services/authService";
 import Link from "next/link";
 import BellIcon from "@/src/assets/vector.svg";
 
@@ -8,12 +10,17 @@ export interface RightMenuProps {
 }
 const RightMenu = ({ userType }: RightMenuProps) => {
   const router = useRouter();
-  // 추가: 로그아웃 핸들러
+
+  // 로그아웃 핸들러
   const handleLogout = async () => {
-    // TODO: 실제 로그아웃 API 호출
-    console.log("logout");
-    // await fetch("/api/auth/logout", { method: "POST" });
-    // router.push("/login");
+    try {
+      await authService.logout();
+      router.push("/login");
+      router.refresh();
+    } catch (error) {
+      console.error("로그아웃 실패:", error);
+      alert("로그아웃에 실패했습니다.");
+    }
   };
 
   // 추가: 알림 핸들러
