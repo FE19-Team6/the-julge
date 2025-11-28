@@ -1,14 +1,36 @@
 "use client";
 
+import { useLoginForm } from "@/src/features/auth/hooks/useLoginForm";
+import { useLoginSubmit } from "@/src/features/auth/hooks/useLoginSubmit";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Logo from "@/assets/logo.svg";
-import Input from "@/src/components/common/Input/Input";
+import EmailInput from "@/src/features/auth/components/EmailInput";
+import PasswordFields from "@/src/features/auth/components/PasswordFields";
 import Button from "@/src/components/common/Button/Button";
-import { useLogin } from "@/src/lib/hooks/useLogin";
 
 export default function LoginPage() {
-  const { email, setEmail, password, setPassword, handleLogin, isLoading } =
-    useLogin();
+  const loginForm = useLoginForm();
+  const { submitLogin, isLoading, loginError } = useLoginSubmit();
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!loginForm.isFormValid) {
+      alert("입력값을 확인해주세요");
+      return;
+    }
+
+    const ok = await submitLogin(loginForm.email, loginForm.password);
+
+    if (!ok) {
+      alert(loginError || "로그인 실패");
+      return;
+    }
+
+    router.push("/");
+  };
 
   return (
     <div className="w-full flex flex-col items-center px-4">
@@ -16,34 +38,37 @@ export default function LoginPage() {
       <Link href="/" className="cursor-pointer select-none">
         <Logo className="w-[248px] h-auto" />
       </Link>
+
       {/* 폼 컨테이너 */}
       <form
-        onSubmit={handleLogin}
+        onSubmit={handleSubmit}
         className="w-[350px] flex flex-col mt-[40px] gap-7"
       >
         {/* 이메일 */}
-        <Input
-          label="이메일"
-          type="email"
-          placeholder="이메일을 입력해주세요"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          autoComplete="email"
+        <EmailInput
+          email={loginForm.email}
+          emailError={loginForm.emailError}
+          handleEmailChange={loginForm.handleEmailChange}
+          handleEmailClear={loginForm.handleEmailClear}
         />
-        {/* 비밀번호 */}
-        <Input
-          label="비밀번호"
-          type="password"
-          placeholder="비밀번호를 입력해주세요"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          autoComplete="current-password"
+
+        <PasswordFields
+          password={loginForm.password}
+          passwordError={loginForm.passwordError}
+          handlePasswordChange={loginForm.handlePasswordChange}
         />
+
         {/* 로그인 버튼 */}
-        <Button type="submit" size="full">
-          로그인 하기
+        <Button
+          type="submit"
+          size="full"
+          disabled={isLoading}
+          variant={isLoading ? "disabled" : "primary"}
+        >
+          {isLoading ? "로그인 중…" : "로그인 하기"}
         </Button>
-        {/* 회원가입 info*/}
+
+        {/* 회원가입 info */}
         <p className="text-center text-sm text-gray-500">
           회원이 아니신가요?{" "}
           <Link href="/signup" className="text-[#5534DA] underline">
