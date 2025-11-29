@@ -20,13 +20,13 @@ const Header = ({ userType }: HeaderProps) => {
 
   const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && keyword) {
-      router.push(`/search?keyword=${encodedKeyword}`);
+      router.push(`/?keyword=${encodedKeyword}`);
     }
   };
 
   const handleIconClick = () => {
     if (!keyword) return;
-    router.push(`/search?keyword=${encodedKeyword}`);
+    router.push(`/?keyword=${encodedKeyword}`);
   };
 
   return (
