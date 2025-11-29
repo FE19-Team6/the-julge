@@ -37,3 +37,9 @@ export async function getUserId() {
   const cookieStore = await cookies();
   return cookieStore.get("userId")?.value;
 }
+
+// 유저 주소 가져오기 (서버 컴포넌트용)
+export async function getUserAddress() {
+  const cookieStore = await cookies();
+  return cookieStore.get("userAddress")?.value;
+}
