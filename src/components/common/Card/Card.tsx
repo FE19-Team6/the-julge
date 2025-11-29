@@ -10,7 +10,7 @@ import NoData from "../NoData/NoData";
 import { calculatePayBadge } from "@/lib/utils/calculatePayBadge";
 
 export type CardProps = ComponentPropsWithoutRef<"article"> & {
-  id: number;
+  id: string;
   name: string;
   address1: string;
   imageUrl: string;
@@ -19,7 +19,7 @@ export type CardProps = ComponentPropsWithoutRef<"article"> & {
   originalHourlyPay: number;
   hourlyPay: number;
   // 가게 주인이 accepted하면 공고마감 처리됨 (카드 disable + 섬네일 Nodata 적용)
-  status?: "accepted" | "rejected"; 
+  status?: "accepted" | "rejected";
 };
 
 // 공고 상태 상수 (문자 그대로 쓰지 않도록 정리)
@@ -28,7 +28,7 @@ const JOB_STATUS = {
   OPEN: "rejected",
 } as const;
 
-// 공용 스타일 모음 
+// 공용 스타일 모음
 const CARD_BASE = `
   w-full border border-gray-20 
   rounded-2xl p-4 cursor-pointer 
@@ -62,7 +62,6 @@ export default function Card({
   className,
   ...rest
 }: CardProps) {
-
   // 공고가 마감된 상태인지 계산
   const isClosed = status === JOB_STATUS.CLOSED;
 
@@ -82,7 +81,6 @@ export default function Card({
           isClosed && "cursor-default hover:shadow-none"
         )}
       >
-        
         {/* 이미지 영역 */}
         <div
           className={clsx(
@@ -100,7 +98,7 @@ export default function Card({
               className="object-cover"
             />
           ) : (
-            <div className="w-full h-full bg-gray-20"/>
+            <div className="w-full h-full bg-gray-20" />
           )}
 
           {/* 마감된 경우 화면 전체를 덮는 안내 UI */}
@@ -122,11 +120,14 @@ export default function Card({
           )}
         </div>
 
-
         {/* 텍스트 영역 */}
         {/* 마감 시 흐리게 보이고 클릭 불가 처리 */}
-        <div className={clsx("mt-4 space-y-3", isClosed && "opacity-60 pointer-events-none")}>
-          
+        <div
+          className={clsx(
+            "mt-4 space-y-3",
+            isClosed && "opacity-60 pointer-events-none"
+          )}
+        >
           {/* 가게명 */}
           <h2 className={CARD_DESIGN.shopName}>{name}</h2>
 
@@ -154,18 +155,15 @@ export default function Card({
             <p className={CARD_DESIGN.info}>{address1}</p>
           </div>
 
-           {/* 시급 + 증가율 뱃지 */}
+          {/* 시급 + 증가율 뱃지 */}
           <div className={CARD_DESIGN.priceRow}>
-            <p className={CARD_DESIGN.price}>
-              {hourlyPay.toLocaleString()}원
-            </p>
+            <p className={CARD_DESIGN.price}>{hourlyPay.toLocaleString()}원</p>
 
             {!isClosed && badge ? (
               <Badge variant={badge.variant} className={CARD_DESIGN.badgeText}>
                 {badge.label}
               </Badge>
             ) : (
-
               /* 레이아웃 유지를 위한 빈 박스 */
               <div className="h-9" />
             )}
