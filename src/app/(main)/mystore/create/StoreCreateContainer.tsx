@@ -6,7 +6,7 @@ import Button from "@/src/components/common/Button/Button";
 
 import { useCreateStoreForm } from "@/src/features/stores/hooks/useCreateStoreForm";
 import { useCreateStoreSubmit } from "@/src/features/stores/hooks/useCreateStoreSubmit";
-import { uploadImage } from "@/src/lib/utils/uploadImage";
+import { uploadImage } from "@/src/features/stores/utils/uploadImage";
 
 import StoreNameField from "@/src/features/stores/components/StoreNameField";
 import CategorySelector from "@/src/features/stores/components/CategorySelector";
