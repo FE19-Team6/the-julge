@@ -6,16 +6,28 @@ import { noticeToCard } from "../../utils/noticeToCard";
 
 interface AllJobsSectionProps {
   initialData: Notice[];
+  keyword?: string;
 }
 
-export const AllJobsSection = ({ initialData }: AllJobsSectionProps) => {
+export const AllJobsSection = ({
+  initialData,
+  keyword,
+}: AllJobsSectionProps) => {
   const cardData = initialData.map(noticeToCard);
 
   return (
     <section className="w-full py-[60px] flex justify-center">
       <div className="w-full max-w-[964px]">
         <header className="flex justify-between items-center mb-6">
-          <h2 className="text-h2">전체 공고</h2>
+          <h2 className="text-h2">
+            {keyword ? (
+              <>
+                <span className="text-red-40">{keyword}</span>에 대한 공고 목록
+              </>
+            ) : (
+              "전체 공고"
+            )}
+          </h2>
           <FilterGroup />
         </header>
         <CardList items={cardData}></CardList>

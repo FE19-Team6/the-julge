@@ -27,8 +27,8 @@ export default async function MainPage({
   });
   return (
     <>
-      <RecommendedJobsSection initialData={recommendedNotices} />
-      <AllJobsSection initialData={allNotices} />
+      {!keyword && <RecommendedJobsSection initialData={recommendedNotices} />}
+      <AllJobsSection initialData={allNotices} keyword={keyword} />
     </>
   );
 }
