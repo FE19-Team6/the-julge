@@ -7,8 +7,9 @@ import Dropdown from "@/src/components/common/Dropdown/Dropdown";
 //TextArea 컴포넌트 분리: 여러 줄 입력 전용이고 높이/스크롤/줄바꿈 등 별도 UI·UX 필요
 import TextArea from "@/src/features/profile/components/TextArea";
 
-// 서울 지역 목록(예: 강남구, 송파구 등)
-import { SEOUL_REGIONS } from "@/src/features/profile/constants/regions";
+// 선호 지역 목록
+import { addressOptions } from "@/src/features/stores/constants/adressOptions";
+
 
 /*
  * ProfileForm
@@ -49,7 +50,7 @@ export default function ProfileForm({form}: {form: ProfileFormType}) {
           label="선호지역"
           value={address}
           onChangeValue={setAddress}
-          options={SEOUL_REGIONS}
+          options={addressOptions}
         />
       </div>
 
