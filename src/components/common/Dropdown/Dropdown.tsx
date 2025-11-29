@@ -74,17 +74,19 @@ const Dropdown = ({
       {isOpen && (
         <div
           className="
-            absolute
-            top-full
-            left-0
-            mt-1
-            w-full
-            bg-white
-            border border-gray-30
-            rounded-[10px]
-            shadow-md
-            z-50
-          "
+      absolute
+      top-full
+      left-0
+      mt-1
+      w-full
+      bg-white
+      border border-gray-30
+      rounded-[10px]
+      shadow-md
+      z-50
+      max-h-[200px]
+      overflow-y-auto
+    "
         >
           {options.map((opt) => (
             <button
