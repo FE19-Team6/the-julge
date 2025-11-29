@@ -1,4 +1,4 @@
-// types/notice.ts (또는 적절한 위치)
+// NoticeApiResponse 평탄화
 export interface Notice {
   id: string;
   hourlyPay: number;
@@ -17,7 +17,7 @@ export interface Notice {
   };
 }
 
-// API 응답 타입
+// API 응답 타입 원본
 export interface NoticeApiResponse {
   items: {
     item: {

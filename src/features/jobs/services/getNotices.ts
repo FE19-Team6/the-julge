@@ -1,23 +1,36 @@
-import { directApi } from "@/src/lib/api/axios/axios";
-import { NoticeApiResponse } from "../type";
-import { CardProps } from "@/src/components/common/Card/Card";
+import { NoticeApiResponse, Notice } from "../type";
 
-export interface GetNoticesParams {
-  address?: string;
-  offset?: number;
-  limit?: number;
-  sort?: string;
-  keyword?: string;
-  startsAtGte?: string;
-  hourlyPayGte?: number;
-}
+export const noticeService = {
+  getNotice: async (
+    params?: Record<string, string | number>
+  ): Promise<Notice[]> => {
+    const query = params
+      ? `?${new URLSearchParams(params as Record<string, string>)}`
+      : "";
 
-export const getNotices = async (
-  params?: GetNoticesParams
-): Promise<NoticeApiResponse> => {
-  const response = await directApi.get<NoticeApiResponse>("notices", {
-    params,
-  });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/notices${query}`,
+      { cache: "no-store" }
+    );
 
-  return response.data;
+    const data: NoticeApiResponse = await res.json();
+
+    return data.items.map((notice) => ({
+      id: notice.item.id,
+      hourlyPay: notice.item.hourlyPay,
+      startsAt: notice.item.startsAt,
+      workhour: notice.item.workhour,
+      description: notice.item.description,
+      closed: notice.item.closed,
+      shop: {
+        id: notice.item.shop.item.id,
+        name: notice.item.shop.item.name,
+        category: notice.item.shop.item.category,
+        address1: notice.item.shop.item.address1,
+        address2: notice.item.shop.item.address2,
+        imageUrl: notice.item.shop.item.imageUrl,
+        originalHourlyPay: notice.item.shop.item.originalHourlyPay,
+      },
+    }));
+  },
 };
