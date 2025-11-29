@@ -32,8 +32,14 @@ export async function getUserType() {
     | undefined;
 }
 
-// 서버 컴포넌트에서만 사용가능
+// 유저 Id 가져오기: 서버 컴포넌트만 사용가능, 클라이언트에서 사용하고싶으시면 훅을 만들어주세요.
 export async function getUserId() {
   const cookieStore = await cookies();
   return cookieStore.get("userId")?.value;
+}
+
+// 유저 주소 가져오기: 서버 컴포넌트, 클라이언트 컴포넌트 둘 다 사용가능
+export async function getUserAddress() {
+  const cookieStore = await cookies();
+  return cookieStore.get("userAddress")?.value;
 }
