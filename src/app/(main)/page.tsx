@@ -1,7 +1,13 @@
-export default function MainPage() {
+import { directApi } from "@/src/lib/api/axios/axios";
+
+import { RecommendedJobsSection } from "@/src/features/jobs/components/jobList/RecommendedJobsSection";
+import { AllJobsSection } from "./../../features/jobs/components/jobList/AllJobsSection";
+
+export default async function MainPage() {
   return (
     <>
-      <div>메인페이지 (공고리스트)</div>
+      <RecommendedJobsSection />
+      <AllJobsSection />
     </>
   );
 }
