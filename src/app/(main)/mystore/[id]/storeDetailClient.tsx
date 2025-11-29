@@ -40,7 +40,7 @@ export default function StoreDetailClient({ store }: Props) {
               description="새로운 공고를 등록해보세요!"
               action={
                 <LinkButton
-                  href={`/mystore/${store.id}/post/create`}
+                  href={`/jobs/create?shopId=${store.id}`}
                   variant="primary"
                   size="lg"
                 >
