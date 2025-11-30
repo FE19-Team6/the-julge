@@ -3,15 +3,18 @@
 import DetailCardLayout from "@/src/components/layout/DetailCardLayout";
 import NoData from "@/src/components/common/NoData/NoData";
 import LinkButton from "@/src/components/common/Button/LinkButton";
+import CardList from "@/src/components/common/Card/CardList";
+import type { CardProps } from "@/src/components/common/Card/Card";
 
 import { FlattenedStoreDetail } from "./types";
 
 interface Props {
   store: FlattenedStoreDetail;
+  notices: CardProps[];
 }
 
-export default function StoreDetailClient({ store }: Props) {
-  const hasPosts = false;
+export default function StoreDetailClient({ store, notices }: Props) {
+  const hasPosts = notices.length > 0;
 
   return (
     <div className="w-full flex justify-center">
@@ -28,6 +31,26 @@ export default function StoreDetailClient({ store }: Props) {
           name={store.name}
           location={`${store.address1} ${store.address2}`}
           description={store.description}
+          buttonSlot={
+            <div className="flex gap-2">
+              <LinkButton
+                href={`/shops/${store.id}/edit`}
+                variant="outline"
+                size="md"
+              >
+                편집하기
+              </LinkButton>
+
+              <LinkButton
+                href={`/jobs/create?shopId=${store.id}`}
+                variant="primary"
+                size="md"
+                className="whitespace-nowrap"
+              >
+                공고 등록하기
+              </LinkButton>
+            </div>
+          }
         />
 
         {/* 공고 영역 */}
@@ -49,7 +72,7 @@ export default function StoreDetailClient({ store }: Props) {
               }
             />
           ) : (
-            <div>공고 리스트 들어갈 자리</div>
+            <CardList items={notices} />
           )}
         </section>
       </div>

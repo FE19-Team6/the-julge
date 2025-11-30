@@ -1,7 +1,12 @@
 import StoreDetailClient from "./storeDetailClient";
-import { StoreDetailResponse, FlattenedStoreDetail } from "./types";
+import {
+  StoreDetailResponse,
+  FlattenedStoreDetail,
+  NoticesResponse,
+} from "./types";
 import { getToken } from "@/src/lib/utils/getCookies";
 import { redirect } from "next/navigation";
+import { mapNoticeListToCardProps } from "./mapper";
 
 export default async function Page({
   params,
@@ -47,5 +52,26 @@ export default async function Page({
     user: item.user.item,
   };
 
-  return <StoreDetailClient store={store} />;
+  const noticesRes = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/shops/${id}/notices`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      cache: "no-store",
+    }
+  );
+
+  if (!noticesRes.ok) {
+    console.error("NOTICE STATUS:", noticesRes.status);
+    throw new Error("공고 리스트를 불러오지 못했습니다.");
+  }
+
+  const noticesJson: NoticesResponse = await noticesRes.json();
+  const rawNotices = noticesJson.items;
+
+  const notices = mapNoticeListToCardProps(rawNotices, store);
+
+  return <StoreDetailClient store={store} notices={notices} />;
 }
