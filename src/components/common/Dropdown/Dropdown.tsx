@@ -10,7 +10,7 @@ export type DropdownOption = {
 };
 
 export type DropdownProps = {
-  label: string;
+  label?: string;
   value?: string;
   options: DropdownOption[];
   placeholder?: string;

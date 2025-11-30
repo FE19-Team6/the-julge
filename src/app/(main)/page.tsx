@@ -11,11 +11,13 @@ export default async function MainPage({
     address?: string | string[];
     startsAtGte?: string;
     hourlyPayGte?: string;
+    sort?: string;
   }>;
 }) {
   const userAddress = (await getUserAddress()) ?? "";
   const params = await searchParams;
   const { keyword, address, startsAtGte, hourlyPayGte } = params;
+  const sort = params.sort || "time";
 
   // 주소 여러개 올때 배열 처리
   const selectedAddresses = address
@@ -40,6 +42,7 @@ export default async function MainPage({
   const allNotices = await noticeService.getNotice({
     limit: 6,
     offset: 0,
+    sort,
     ...(keyword && { keyword }),
     ...(startsAtGte && { startsAtGte: validStartDate }),
     ...(hourlyPayGte && { hourlyPayGte: Number(hourlyPayGte) }),

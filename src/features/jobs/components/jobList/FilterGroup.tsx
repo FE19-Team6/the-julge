@@ -10,10 +10,11 @@ export const FilterGroup = () => {
 
   return (
     <div className="flex gap-2 relative">
-      {/* <SortDropdown /> */}
+      <SortDropdown />
       <Button
+        variant="custom"
         onClick={() => setIsFilterOpen(true)}
-        className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition "
+        className="w-[130px] mt-1 bg-red-30 px-4 py-2 rounded-lg hover:text-white text-white hover:border-none cursor-pointer"
       >
         상세 필터
       </Button>
