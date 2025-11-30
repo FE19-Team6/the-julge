@@ -48,6 +48,8 @@ const CARD_DESIGN = {
   closedOverlay: "inset-0",
 } as const;
 
+const DEFAULT_IMAGE = "/images/default-shop.png";
+
 // 카드 컴포넌트
 export default function Card({
   id,
@@ -67,6 +69,9 @@ export default function Card({
 
   // 시급 증가율 계산하고 뱃지 데이터 반환함
   const badge = calculatePayBadge(hourlyPay, originalHourlyPay);
+
+  // 유효한 이미지 URL 확인
+  const validImageUrl = imageUrl?.startsWith("http") ? imageUrl : DEFAULT_IMAGE;
 
   return (
     <Link
@@ -90,11 +95,12 @@ export default function Card({
           )}
         >
           {/* 이미지 */}
-          {imageUrl ? (
+          {validImageUrl ? (
             <Image
-              src={imageUrl}
+              src={validImageUrl}
               alt={`${name} 가게 이미지`}
               fill
+              unoptimized
               className="object-cover"
             />
           ) : (

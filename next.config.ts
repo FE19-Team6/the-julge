@@ -12,7 +12,16 @@ const nextConfig: NextConfig = {
         hostname: "bootcamp-project-api.s3.ap-northeast-2.amazonaws.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "i.pinimg.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
     ],
+    formats: ["image/avif", "image/webp"],
   },
 
   turbopack: {

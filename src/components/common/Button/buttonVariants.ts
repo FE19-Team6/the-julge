@@ -24,6 +24,7 @@ export const BUTTON_VARIANTS = {
   disabled: `
     bg-gray-40 text-white cursor-not-allowed
   `,
+  custom: ``,
 } as const;
 
 export type ButtonVariant = keyof typeof BUTTON_VARIANTS;
@@ -46,6 +47,14 @@ export const BUTTON_SIZES = {
   full: `
     w-full h-12 px-5
     text-[16px] font-[500]
+  `,
+  address: `
+    h-4 h-8 px-2 
+    text-[11x] font-[500]
+  `,
+  addressBedge: `
+    w-auto h-8 px-3
+    text-[12px] font-[500]
   `,
 } as const;
 
