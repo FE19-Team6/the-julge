@@ -2,33 +2,29 @@ import { useState, useEffect } from "react";
 import { notificationService } from "../services/notificationService";
 import { Notification } from "@/src/components/common/Noitfication/NotificationModal";
 
-// 추후 삭제:목업 데이터
-const MOCK_DATA: Notification[] = [
-  {
-    id: "1",
-    createdAt: "2024-03-20T10:00:00Z",
-    shopName: "스타벅스 강남점",
-    noticeTime: "2024-03-25T09:00:00Z",
-    result: "accepted",
-    read: false,
-  },
-  {
-    id: "2",
-    createdAt: "2024-03-19T15:30:00Z",
-    shopName: "투썸플레이스 신촌점",
-    noticeTime: "2024-03-24T14:00:00Z",
-    result: "rejected",
-    read: false,
-  },
-  {
-    id: "3",
-    createdAt: "2024-03-18T11:20:00Z",
-    shopName: "커피빈 홍대점",
-    noticeTime: "2024-03-23T10:00:00Z",
-    result: "accepted",
-    read: true,
-  },
-];
+// API 응답 타입 정의
+interface NotificationItemWrapper {
+  item: {
+    id: string;
+    createdAt: string;
+    shop: {
+      item: {
+        name: string;
+      };
+    };
+    notice: {
+      item: {
+        startsAt: string;
+      };
+    };
+    result: string;
+    read: boolean;
+  };
+}
+
+interface NotificationsResponse {
+  items: NotificationItemWrapper[];
+}
 
 export function useNotifications() {
   //목록
@@ -39,25 +35,21 @@ export function useNotifications() {
   const fetchNotifications = async () => {
     setIsLoading(true);
     try {
-      //  추후 삭제: API 호출 대신 목업 데이터 사용
-      await new Promise((resolve) => setTimeout(resolve, 500)); // 로딩 시뮬레이션
-      setNotifications(MOCK_DATA);
+      // /api/notifications GET 요청, service에 함수있음
+      const data: NotificationsResponse =
+        await notificationService.getNotifications();
 
-      // 실제 API 사용 시 주석 해제
-      // // /api/notifications GET 요청, service에 함수있음
-      // const data = await notificationService.getNotifications();
+      // API 응답을 Notification 타입으로 변환
+      const transformed: Notification[] = data.items.map((wrapper) => ({
+        id: wrapper.item.id,
+        createdAt: wrapper.item.createdAt,
+        shopName: wrapper.item.shop.item.name,
+        noticeTime: wrapper.item.notice.item.startsAt,
+        result: wrapper.item.result as "accepted" | "rejected",
+        read: wrapper.item.read,
+      }));
 
-      // // API 응답을 Notification 타입으로 변환
-      // const transformed: Notification[] = data.items.map((wrapper: any) => ({
-      //   id: wrapper.item.id,
-      //   createdAt: wrapper.item.createdAt,
-      //   shopName: wrapper.item.shop.item.name,
-      //   noticeTime: wrapper.item.notice.item.startsAt,
-      //   result: wrapper.item.result,
-      //   read: wrapper.item.read,
-      // }));
-
-      // setNotifications(transformed);
+      setNotifications(transformed);
     } catch (error) {
       console.error("알림 조회 실패:", error);
     } finally {
@@ -68,13 +60,11 @@ export function useNotifications() {
   //모달 열때마다 전체 읽음처리
   const markAllAsRead = async () => {
     try {
-      // 추후 삭제: API 호출 대신 상태만 변경
+      const unreadIds = notifications.filter((n) => !n.read).map((n) => n.id);
+      await Promise.all(
+        unreadIds.map((id) => notificationService.markAsRead(id))
+      );
       setNotifications((prev) => prev.map((item) => ({ ...item, read: true })));
-
-      // 실제 API 사용 시 주석 해제
-      // const unreadIds = notifications.filter((n) => !n.read).map((n) => n.id);
-      // await Promise.all(unreadIds.map((id) => notificationService.markAsRead(id)));
-      // setNotifications((prev) => prev.map((item) => ({ ...item, read: true })));
     } catch (error) {
       console.error("알림 읽음 처리 실패:", error);
     }
