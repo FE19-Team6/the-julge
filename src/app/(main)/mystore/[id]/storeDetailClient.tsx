@@ -31,6 +31,26 @@ export default function StoreDetailClient({ store, notices }: Props) {
           name={store.name}
           location={`${store.address1} ${store.address2}`}
           description={store.description}
+          buttonSlot={
+            <div className="flex gap-2">
+              <LinkButton
+                href={`/shops/${store.id}/edit`}
+                variant="outline"
+                size="md"
+              >
+                편집하기
+              </LinkButton>
+
+              <LinkButton
+                href={`/jobs/create?shopId=${store.id}`}
+                variant="primary"
+                size="md"
+                className="whitespace-nowrap"
+              >
+                공고 등록하기
+              </LinkButton>
+            </div>
+          }
         />
 
         {/* 공고 영역 */}
