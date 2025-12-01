@@ -2,8 +2,7 @@ import NoticeDetailClient from "./NoticeDetailClient";
 import { redirect } from "next/navigation";
 import { getToken } from "@/src/lib/utils/getCookies";
 import { mapNoticeDetail } from "./mapper";
-
-import type { NoticeDetailItem } from "./types";
+import type { NoticeDetailItem, ApplicantItem } from "./types";
 
 export default async function NoticeDetailPage({
   params,
@@ -40,5 +39,26 @@ export default async function NoticeDetailPage({
   const data: { item: NoticeDetailItem } = await res.json();
   const notice = mapNoticeDetail(data.item);
 
-  return <NoticeDetailClient notice={notice} />;
+  const applicantsRes = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/shops/${shopId}/notices/${id}/applications`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+      cache: "no-store",
+    }
+  );
+
+  let applicants: ApplicantItem[] = [];
+
+  if (applicantsRes.ok) {
+    const applicantsData = await applicantsRes.json();
+    applicants = applicantsData.items || [];
+  }
+
+  return (
+    <NoticeDetailClient
+      notice={notice}
+      applicants={applicants}
+      shopId={shopId}
+    />
+  );
 }

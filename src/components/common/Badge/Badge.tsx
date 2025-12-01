@@ -2,7 +2,12 @@ import clsx from "clsx";
 import { ComponentPropsWithoutRef, ReactNode } from "react";
 import ArrowUpIcon from "@/src/assets/arrow-badge.svg";
 
-export type BadgeVariant = "increase" | "middle" | "ended";
+export type BadgeVariant =
+  | "increase"
+  | "middle"
+  | "ended"
+  | "success"
+  | "pending";
 
 export type BadgeProps = ComponentPropsWithoutRef<"span"> & {
   children: ReactNode;
@@ -19,6 +24,8 @@ const BADGE_VARIANTS = {
   increase: "bg-red-40 text-white",
   middle: "bg-red-20 text-white",
   ended: "bg-gray-20 text-white opacity-80",
+  success: "bg-blue-10 text-blue-20",
+  pending: "bg-red-10 text-red-40",
 } as const;
 
 const Badge = ({

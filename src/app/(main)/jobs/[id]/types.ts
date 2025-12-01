@@ -17,3 +17,11 @@ export interface NoticeDetailItem {
     };
   };
 }
+
+export interface ApplicantItem {
+  id: string;
+  name: string;
+  message: string;
+  phone: string;
+  status: "pending" | "approved" | "rejected" | "canceled";
+}
