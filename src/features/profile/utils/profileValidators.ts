@@ -26,12 +26,19 @@ export const validatePhone = (phone: string): string => {
   if (phone.trim() === "") 
     return "핸드폰 번호를 입력해주세요";
 
+  // 숫자만 입력 가능
   const phonePattern = /^[0-9]+$/;
   if (!phonePattern.test(phone)) 
     return "숫자만 입력해주세요";
 
+  // 길이 체크: 10~11자리
   if (phone.length < 10 || phone.length > 11) {
     return "핸드폰 번호 길이가 올바르지 않습니다";
+  }
+
+  // 시작 번호 체크: 010 또는 011만 허용
+  if (!phone.startsWith("010") && !phone.startsWith("011")) {
+    return "잘못된 핸드폰 번호입니다";
   }
 
   return "";
