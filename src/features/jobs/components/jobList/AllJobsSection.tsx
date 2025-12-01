@@ -1,17 +1,21 @@
 import CardList from "@/src/components/common/Card/CardList";
-//import Pagination from "@/src/components/Pagination/Pagination";
 import { FilterGroup } from "./FilterGroup";
 import { Notice } from "../../type";
 import { noticeToCard } from "../../utils/noticeToCard";
+import PaginationWrapper from "./PaginationWrapper";
 
 interface AllJobsSectionProps {
   initialData: Notice[];
   keyword?: string;
+  currentPage: number;
+  totalPages: number;
 }
 
 export const AllJobsSection = ({
   initialData,
   keyword,
+  currentPage,
+  totalPages,
 }: AllJobsSectionProps) => {
   const cardData = initialData.map(noticeToCard);
 
@@ -31,7 +35,7 @@ export const AllJobsSection = ({
           <FilterGroup />
         </header>
         <CardList items={cardData}></CardList>
-        {/* <Pagination /> */}
+        <PaginationWrapper current={currentPage} total={totalPages} />
       </div>
     </section>
   );
