@@ -9,7 +9,7 @@ export const notificationService = {
 
   // 알림 읽음 처리
   markAsRead: async (alertId: string) => {
-    const response = await api.put("/notifications/${alertId}");
+    const response = await api.put(`/notifications/${alertId}`);
     return response.data;
   },
 };
