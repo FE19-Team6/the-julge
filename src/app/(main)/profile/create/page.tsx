@@ -1,79 +1,41 @@
+import { redirect } from "next/navigation";
+import { getToken, getUserId } from "@/src/lib/utils/getCookies";
+import ProfileCreateClient from "./ProfileCreateClient";
+import type { Profile } from "@/src/features/auth/type";
+import { getProfile } from "@/src/app/api/profile/getProfile";
 
-"use client";
-
-import { useState } from "react";
-import Button from "@/src/components/common/Button/Button";
-import ProfileForm from "@/src/features/profile/components/ProfileForm";
-import ProfileModal, {
-  ProfileModalType,
-} from "@/src/features/profile/components/ProfileModal";
-
-import { useProfileForm } from "@/src/features/profile/hooks/useProfileForm";
-import { updateProfile } from "@/src/features/profile/services/updateProfile";
-
-export default function Page() {
-  // 프로필 작성 상태 + 핸들러 + 에러
-  const profileForm = useProfileForm();
-
-  // 모달 상태
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalType, setModalType] = useState<ProfileModalType>("VALIDATION");
-
-  // 등록하기 클릭
-  const handleSubmit = async () => {
-    
-    // 전체 유효성 검사
-    if (!profileForm.isFormValid) {
-      setModalType("VALIDATION");
-      setIsModalOpen(true);
-      return;
-    }
-
-    // API 호출
-    try {
-      await updateProfile(
-        {
-        name: profileForm.name,
-        phone: profileForm.phone,
-        address: profileForm.address,
-        bio: profileForm.bio,
-      });
-
-      setModalType("SUCCESS");
-      setIsModalOpen(true);
-
-    } catch (err) {
-      console.error(err);
-      setModalType("FAIL");
-      setIsModalOpen(true);
-    }
-  };
-
+// 프로필이 비어있는지 확인하는 함수 (모두 비어있으면 빈 프로필로 판단함)
+function isEmptyProfile(profile: Profile | null): boolean {
+  if (!profile) return true;
   return (
-    <>
-      {/* 커스텀 모달 */}
-      <ProfileModal
-        isOpen={isModalOpen}
-        type={modalType}
-        onConfirm={() => setIsModalOpen(false)}
-      />
-
-      {/* 페이지 레이아웃 */}
-      <div className="w-full mt-15">
-      <div className="w-full max-w-[964px] mx-auto px-4 md:px-6 lg:px-0 space-y-8">
-        <h1 className="text-h2">내 프로필</h1>
-
-          {/* 폼 영역 */}
-          <ProfileForm form={profileForm} />
-
-          {/* 버튼 중앙 정렬 */}
-          <div className="w-full flex justify-center mt-6">
-            <Button variant="primary" size="lg" onClick={handleSubmit}>
-              등록하기
-            </Button>
-          </div>
-        </div>
-      </div>
-    </>
+    !profile.name &&
+    !profile.phone &&
+    !profile.address &&
+    !profile.bio
   );
+}
+
+/* 
+- 프로필이 생성 페이지 (서버 컴포넌트)
+- 인증된 사용자만 접근할 수 있고, 프로필이 이미 존재하면 수정 페이지로 리다이렉트
+- 프로필이 없으면 생성 폼 표시
+*/
+export default async function Page() {
+  // 인증 체크
+  const token = await getToken();
+  if (!token) redirect("/login");
+
+  const userId = await getUserId();
+  if (!userId) redirect("/login");
+
+  // 프로필 조회
+  const profile = await getProfile(userId, token);
+
+  // 프로필이 비어있지 않으면 edit 페이지로 보냄
+  if (!isEmptyProfile(profile)) {
+    redirect("/profile/edit");
+  }
+
+  // 프로필이 비어있으면 생성 폼 표시
+  return <ProfileCreateClient />;
 }
