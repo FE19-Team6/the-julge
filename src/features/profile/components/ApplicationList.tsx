@@ -48,7 +48,7 @@ export default function ApplicationList({ applications }: ApplicationListProps) 
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    // 페이지 변경 시 스크롤을 목록 상단으로 이동 (선택사항)
+    // 페이지 변경 시 스크롤을 목록 상단으로 이동
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
