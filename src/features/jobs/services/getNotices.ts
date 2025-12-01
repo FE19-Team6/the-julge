@@ -1,9 +1,9 @@
-import { NoticeApiResponse, Notice } from "../type";
+import { NoticeApiResponse, Notice, NoticeServiceResponse } from "../type";
 
 export const noticeService = {
   getNotice: async (
     params?: Record<string, string | number>
-  ): Promise<Notice[]> => {
+  ): Promise<NoticeServiceResponse> => {
     const query = params
       ? `?${new URLSearchParams(params as Record<string, string>)}`
       : "";
@@ -15,7 +15,7 @@ export const noticeService = {
 
     const data: NoticeApiResponse = await res.json();
 
-    return data.items.map((notice) => ({
+    const mappedItems = data.items.map((notice) => ({
       id: notice.item.id,
       hourlyPay: notice.item.hourlyPay,
       startsAt: notice.item.startsAt,
@@ -32,5 +32,14 @@ export const noticeService = {
         originalHourlyPay: notice.item.shop.item.originalHourlyPay,
       },
     }));
+
+    // 전체 응답 반환
+    return {
+      items: mappedItems,
+      count: data.count,
+      limit: data.limit,
+      offset: data.offset,
+      hasNext: data.hasNext,
+    };
   },
 };

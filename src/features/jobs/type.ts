@@ -19,6 +19,11 @@ export interface Notice {
 
 // API 응답 타입 원본
 export interface NoticeApiResponse {
+  offset: number;
+  limit: number;
+  address: string[];
+  count: number;
+  hasNext: boolean;
   items: {
     item: {
       id: string;
@@ -41,4 +46,13 @@ export interface NoticeApiResponse {
       };
     };
   }[];
+}
+
+// 서비스 반환 타입
+export interface NoticeServiceResponse {
+  items: Notice[];
+  count: number;
+  limit: number;
+  offset: number;
+  hasNext: boolean;
 }

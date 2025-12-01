@@ -12,12 +12,14 @@ export default async function MainPage({
     startsAtGte?: string;
     hourlyPayGte?: string;
     sort?: string;
+    page?: string;
   }>;
 }) {
   const userAddress = (await getUserAddress()) ?? "";
   const params = await searchParams;
   const { keyword, address, startsAtGte, hourlyPayGte } = params;
   const sort = params.sort || "time";
+  const currentPage = Number(params.page) || 1;
 
   // 주소 여러개 올때 배열 처리
   const selectedAddresses = address
@@ -28,7 +30,7 @@ export default async function MainPage({
 
   //date 포맷 RFC 3339형식으로
   const validStartDate = startsAtGte
-    ? `${startsAtGte}T00:00:00.000Z` // 🔥 RFC 3339 형식으로 변환
+    ? `${startsAtGte}T00:00:00.000Z` // RFC 3339 형식으로 변환
     : undefined;
 
   // 맞춤 공고 (주소 기반)
@@ -38,27 +40,41 @@ export default async function MainPage({
     address: userAddress,
   });
 
+  // 전체 공고 - offset 계산 추가, 응답 객체 받기
+  const limit = 6;
+  const offset = (currentPage - 1) * limit;
+
   // 전체 공고 (기본값)
   const allNotices = await noticeService.getNotice({
-    limit: 6,
-    offset: 0,
+    limit,
+    offset,
     sort,
     ...(keyword && { keyword }),
     ...(startsAtGte && { startsAtGte: validStartDate }),
     ...(hourlyPayGte && { hourlyPayGte: Number(hourlyPayGte) }),
   });
 
+  // 추가: 총 페이지 수 계산
+  const totalPages = Math.ceil(allNotices.count / limit);
+
   // 주소 필터링
   const filteredNotices =
     selectedAddresses.length > 0
-      ? allNotices.filter((notice) =>
+      ? allNotices.items.filter((notice) =>
           selectedAddresses.includes(notice.shop.address1)
         )
-      : allNotices;
+      : allNotices.items;
   return (
     <>
-      {!keyword && <RecommendedJobsSection initialData={recommendedNotices} />}
-      <AllJobsSection initialData={filteredNotices} keyword={keyword} />
+      {!keyword && (
+        <RecommendedJobsSection initialData={recommendedNotices.items} />
+      )}
+      <AllJobsSection
+        initialData={filteredNotices}
+        keyword={keyword}
+        currentPage={currentPage}
+        totalPages={totalPages}
+      />
     </>
   );
 }
