@@ -1,11 +1,9 @@
-// src/features/profile/data/dummyApplications.ts
+import { Application } from "@/src/features/profile/type";
 
-import type { Application } from "@/src/features/auth/type";
-
-/**
- * 신청 내역 더미 데이터
- * 개발 및 테스트용
- */
+/*
+- 신청 내역 더미 데이터
+- 개발 및 테스트용
+*/
 
 export const dummyApplications: Application[] = [
   {
