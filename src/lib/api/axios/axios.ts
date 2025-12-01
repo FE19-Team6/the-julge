@@ -28,7 +28,8 @@ const responseInterceptor = (error: AxiosError) => {
   if (status === 401) {
     if (
       typeof window !== "undefined" &&
-      !window.location.pathname.includes("/login")
+      !window.location.pathname.includes("/login") &&
+      window.location.pathname !== "/"
     ) {
       window.location.href = "/login";
     }

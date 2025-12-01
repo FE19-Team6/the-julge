@@ -17,8 +17,13 @@ const RightMenu = ({ userType }: RightMenuProps) => {
   // 알림 모달 오픈 여부
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
 
+  // 로그인 상태일 때만 훅 실행
+  const notificationData = userType
+    ? useNotifications()
+    : { notifications: [], unreadCount: 0, markAllAsRead: () => {} };
+
   // 알림 목록, 읽지 않은 갯수, 읽은알람
-  const { notifications, unreadCount, markAllAsRead } = useNotifications();
+  const { notifications, unreadCount, markAllAsRead } = notificationData;
 
   // 모달 열림
   const handleNotificationOpen = () => {
