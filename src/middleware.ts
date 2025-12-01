@@ -5,7 +5,7 @@ export function middleware(req: NextRequest) {
   const token = req.cookies.get("token")?.value;
 
   // 보호된 페이지
-  const protectedPaths = ["/jobs", "/mystore", "/profile"];
+  const protectedPaths = ["/mystore", "/profile"];
   const isProtectedPath = protectedPaths.some((path) =>
     req.nextUrl.pathname.startsWith(path)
   );
@@ -29,5 +29,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/jobs/:path*", "/mystore/:path*", "/profile/:path*", "/login"],
+  matcher: ["/mystore/:path*", "/profile/:path*", "/login"],
 };
