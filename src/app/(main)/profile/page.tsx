@@ -6,27 +6,23 @@ import Button from "@/src/components/common/Button/Button";
 import ProfileSummaryCard from "@/src/features/profile/components/ProfileSummaryCard";
 import ApplicationList from "@/src/features/profile/components/ApplicationList";
 import type { Profile } from "@/src/features/auth/type";
+import type { Application } from "@/src/features/profile/type";
 
-// TODO: API 연동 후 삭제
-import { dummyApplications } from "@/src/features/profile/data/dummyApplications";
-// TODO: API 함수 추가
-// import { getApplications } from "@/src/features/profile/api/getApplications";
-
-/*
-- 프로필이 비어있는지 확인
-- 모든 필드가 비어있으면 빈 프로필로 판단
-*/
+/**
+ * 프로필이 비어있는지 확인
+ * 모든 필드가 비어있으면 빈 프로필로 판단
+ */
 function isEmptyProfile(profile: Profile | null): boolean {
   if (!profile) return true;
   return !profile.name && !profile.phone && !profile.address && !profile.bio;
 }
 
-/*
-- 프로필 조회 페이지 (서버 컴포넌트)
-- 인증된 사용자만 접근 가능
-- 프로필이 없으면 등록 안내 화면
-- 프로필이 있으면 프로필 카드 + 신청 내역 표시
-*/
+/**
+ * 프로필 조회 페이지 (서버 컴포넌트)
+ * - 인증된 사용자만 접근 가능
+ * - 프로필이 없으면 등록 안내 화면
+ * - 프로필이 있으면 프로필 카드 + 신청 내역 표시
+ */
 export default async function Page() {
   // 인증 체크
   const token = await getToken();
@@ -61,9 +57,9 @@ export default async function Page() {
     );
   }
 
-  // 현재: 더미 데이터 사용
-  const applications = dummyApplications;
-  // 변경 후: const applications = await getApplications(userId, token);
+  // TODO: API 연동 후 수정
+  // const applications = await getApplications(userId, token);
+  const applications: Application[] = []; // 임시: 빈 배열
 
   // 프로필 카드 + 신청 내역 표시
   return (
