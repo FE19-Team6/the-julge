@@ -1,6 +1,40 @@
 import { NextResponse } from "next/server";
 import { getToken } from "@/src/lib/utils/getCookies";
 
+// 신청하기
+export async function POST(req: Request) {
+  const token = await getToken();
+  if (!token) {
+    return NextResponse.json(
+      { ok: false, message: "로그인이 필요합니다" },
+      { status: 401 }
+    );
+  }
+
+  const { shopId, noticeId } = await req.json();
+
+  if (!shopId || !noticeId) {
+    return NextResponse.json(
+      { ok: false, message: "필수 값이 누락되었습니다." },
+      { status: 400 }
+    );
+  }
+
+  const backendRes = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/shops/${shopId}/notices/${noticeId}/applications`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  const data = await backendRes.json();
+  return NextResponse.json(data, { status: backendRes.status });
+}
+
 export async function PUT(req: Request) {
   const token = await getToken();
   if (!token) {
