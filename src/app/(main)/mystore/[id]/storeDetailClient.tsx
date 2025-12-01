@@ -3,17 +3,18 @@
 import DetailCardLayout from "@/src/components/layout/DetailCardLayout";
 import NoData from "@/src/components/common/NoData/NoData";
 import LinkButton from "@/src/components/common/Button/LinkButton";
-import CardList from "@/src/components/common/Card/CardList";
 import type { CardProps } from "@/src/components/common/Card/Card";
 
 import { FlattenedStoreDetail } from "./types";
+import InfiniteNoticeList from "./InfiniteNoticeList";
 
 interface Props {
   store: FlattenedStoreDetail;
   notices: CardProps[];
+  hasMore: boolean;
 }
 
-export default function StoreDetailClient({ store, notices }: Props) {
+export default function StoreDetailClient({ store, notices, hasMore }: Props) {
   const hasPosts = notices.length > 0;
 
   return (
@@ -72,7 +73,18 @@ export default function StoreDetailClient({ store, notices }: Props) {
               }
             />
           ) : (
-            <CardList items={notices} />
+            <InfiniteNoticeList
+              shopId={store.id}
+              initialNotices={notices}
+              initialHasMore={hasMore}
+              store={{
+                id: store.id,
+                name: store.name,
+                address1: store.address1,
+                imageUrl: store.imageUrl,
+                originalHourlyPay: store.originalHourlyPay,
+              }}
+            />
           )}
         </section>
       </div>

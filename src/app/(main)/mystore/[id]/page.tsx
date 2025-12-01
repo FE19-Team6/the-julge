@@ -53,12 +53,9 @@ export default async function Page({
   };
 
   const noticesRes = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/shops/${id}/notices`,
+    `${process.env.NEXT_PUBLIC_API_URL}/shops/${id}/notices?offset=0&limit=6`,
     {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
       cache: "no-store",
     }
   );
@@ -72,6 +69,9 @@ export default async function Page({
   const rawNotices = noticesJson.items;
 
   const notices = mapNoticeListToCardProps(rawNotices, store);
+  const hasMore = noticesJson.items?.length === 6;
 
-  return <StoreDetailClient store={store} notices={notices} />;
+  return (
+    <StoreDetailClient store={store} notices={notices} hasMore={hasMore} />
+  );
 }
