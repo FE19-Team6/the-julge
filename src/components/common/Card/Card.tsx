@@ -20,6 +20,7 @@ export type CardProps = ComponentPropsWithoutRef<"article"> & {
   hourlyPay: number;
   // 가게 주인이 accepted하면 공고마감 처리됨 (카드 disable + 섬네일 Nodata 적용)
   status?: "accepted" | "rejected";
+  href: string;
 };
 
 // 공고 상태 상수 (문자 그대로 쓰지 않도록 정리)
@@ -71,7 +72,7 @@ export default function Card({
 
   return (
     <Link
-      href={`/shop/${id}`}
+      href={rest.href}
       className={clsx("block", isClosed && "pointer-events-none")}
     >
       <article

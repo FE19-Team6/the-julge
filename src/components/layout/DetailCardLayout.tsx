@@ -22,6 +22,7 @@ type WageCardProps = {
   description: string;
   imageSlot?: ReactNode;
   badgeSlot?: ReactNode;
+  buttonSlot?: ReactNode;
 };
 
 export type DetailCardLayoutProps = StoreCardProps | WageCardProps;
@@ -108,9 +109,13 @@ export default function DetailCardLayout(props: DetailCardLayoutProps) {
 
             <p className="text-black text-sm leading-relaxed">{description}</p>
 
-            <Button variant="primary" size="md">
-              신청하기
-            </Button>
+            {props.buttonSlot ? (
+              props.buttonSlot
+            ) : (
+              <Button variant="primary" size="md">
+                신청하기
+              </Button>
+            )}
           </>
         )}
       </div>

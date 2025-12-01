@@ -16,6 +16,7 @@ export function mapNoticeListToCardProps(
       hourlyPay: n.hourlyPay,
       originalHourlyPay: store.originalHourlyPay,
       status: n.status,
+      href: `/jobs/${n.id}?shopId=${store.id}`,
     };
   });
 }
