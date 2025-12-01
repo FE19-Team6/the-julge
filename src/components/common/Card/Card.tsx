@@ -30,9 +30,10 @@ const JOB_STATUS = {
 
 // 공용 스타일 모음
 const CARD_BASE = `
-  w-full border border-gray-20 
+  w-full bg-white border border-gray-20 
   rounded-2xl p-4 cursor-pointer 
   transition-shadow hover:shadow-lg
+  h-full
 `;
 
 // 카드 디자인
@@ -44,11 +45,9 @@ const CARD_DESIGN = {
   badgeText: "text-caption font-bold",
   icon: "shrink-0",
   infoRow: "flex items-center gap-2",
-  priceRow: "flex flex-col sm:flex-row items-start sm:items-center gap-3",
+  priceRow: "flex flex-col items-end gap-3",
   closedOverlay: "inset-0",
 } as const;
-
-const DEFAULT_IMAGE = "/images/default-shop.png";
 
 // 카드 컴포넌트
 export default function Card({
@@ -69,9 +68,6 @@ export default function Card({
 
   // 시급 증가율 계산하고 뱃지 데이터 반환함
   const badge = calculatePayBadge(hourlyPay, originalHourlyPay);
-
-  // 유효한 이미지 URL 확인
-  const validImageUrl = imageUrl?.startsWith("http") ? imageUrl : DEFAULT_IMAGE;
 
   return (
     <Link
@@ -95,12 +91,11 @@ export default function Card({
           )}
         >
           {/* 이미지 */}
-          {validImageUrl ? (
+          {imageUrl ? (
             <Image
-              src={validImageUrl}
+              src={imageUrl}
               alt={`${name} 가게 이미지`}
               fill
-              unoptimized
               className="object-cover"
             />
           ) : (
