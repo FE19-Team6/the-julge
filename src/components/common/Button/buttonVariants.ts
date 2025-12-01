@@ -24,6 +24,10 @@ export const BUTTON_VARIANTS = {
   disabled: `
     bg-gray-40 text-white cursor-not-allowed
   `,
+  approve: `
+    bg-white border border-blue-20 text-blue-20 cursor-pointer
+    hover:bg-blue-20 hover:text-white
+  `,
   custom: ``,
 } as const;
 
