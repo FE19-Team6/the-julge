@@ -1,5 +1,6 @@
 import { CardProps } from "@/src/components/common/Card/Card";
 import { Notice } from "./../type";
+import { formatDate } from "@/src/lib/utils/formatDate";
 
 export function noticeToCard(n: Notice): CardProps {
   return {
@@ -7,7 +8,7 @@ export function noticeToCard(n: Notice): CardProps {
     name: n.shop.name,
     address1: n.shop.address1,
     imageUrl: n.shop.imageUrl,
-    startsAt: n.startsAt,
+    startsAt: formatDate(n.startsAt),
     workhour: n.workhour,
     hourlyPay: n.hourlyPay,
     originalHourlyPay: n.shop.originalHourlyPay,
