@@ -16,10 +16,10 @@ type ApplicationListProps = {
 const ITEMS_PER_PAGE = 5;
 
 /*
- * 신청 내역 리스트 컴포넌트
- * - 신청 내역이 없으면 안내 메시지 표시
- * - 신청 내역이 있으면 테이블 형태로 표시
- * - 5개 이상일 때 페이지네이션 표시
+- 신청 내역 리스트 컴포넌트
+- 신청 내역이 없으면 안내 메시지 표시
+- 신청 내역이 있으면 테이블 형태로 표시
+- 5개 이상일 때 페이지네이션 표시
 */
 export default function ApplicationList({ applications }: ApplicationListProps) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -56,8 +56,8 @@ export default function ApplicationList({ applications }: ApplicationListProps) 
   return (
     <div className="space-y-4">
       <div className="border border-gray-20 rounded-xl overflow-hidden bg-white">
-        {/* 테이블 헤더 */}
-        <div className="grid grid-cols-[2fr_3fr_2fr_1fr] gap-4 py-3 px-6 bg-gray-10">
+        {/* 테이블 헤더 - 데스크톱만 표시 */}
+        <div className="hidden md:grid md:grid-cols-[2fr_3fr_2fr_1fr] gap-4 py-3 px-6 bg-gray-10">
           <div className="text-body1 font-bold text-left">가게</div>
           <div className="text-body1 font-bold text-left">일자</div>
           <div className="text-body1 font-bold text-left">시급</div>

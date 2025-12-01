@@ -40,13 +40,30 @@ export default function ApplicationCard({ application }: ApplicationCardProps) {
 
   return (
     <div className={clsx(
-      "grid grid-cols-[2fr_3fr_2fr_1fr]",
-      "gap-4 py-4 px-6 border-b border-gray-20 hover:bg-gray-5",
-      "items-center"
+      // 모바일: 세로 정렬, 태블릿 이상: 가로 그리드
+      "flex flex-col gap-2 md:grid md:grid-cols-[2fr_3fr_2fr_1fr] md:gap-4",
+      "py-4 px-4 md:px-6",
+      "border-b border-gray-20 hover:bg-gray-5",
+      "md:items-center"
     )}>
-      {/* 가게 */}
-      <div className="text-body2">
-        {application.shopName}
+      {/* 모바일: 가게명 + 배지 한 줄 */}
+      <div className="flex justify-between items-center md:contents">
+        {/* 가게 */}
+        <div className="text-body2 font-bold md:font-normal">
+          {application.shopName}
+        </div>
+
+        {/* 모바일: 상태 배지 */}
+        <div className="md:hidden">
+          <span className={`px-2 py-1 rounded-md text-caption font-bold whitespace-nowrap ${getStatusStyle(application.status)}`}>
+            {getStatusText(application.status)}
+          </span>
+        </div>
+      </div>
+
+      {/* 모바일: 시급 (왼쪽 정렬) */}
+      <div className="text-body2 md:hidden">
+        {application.hourlyPay.toLocaleString()}원
       </div>
 
       {/* 일자 */}
@@ -54,14 +71,14 @@ export default function ApplicationCard({ application }: ApplicationCardProps) {
         {application.workDate} ({application.workHour}시간)
       </div>
 
-      {/* 시급 */}
-      <div className="text-body2">
+      {/* 데스크톱: 시급 */}
+      <div className="hidden md:block text-body2">
         {application.hourlyPay.toLocaleString()}원
       </div>
 
-      {/* 뱃지 상태 */}
-      <div className="flex items-center">
-        <span className={`px-3 py-1.5 rounded-md text-caption font-bold ${getStatusStyle(application.status)}`}>
+      {/* 데스크톱: 상태 배지 */}
+      <div className="hidden md:flex items-center">
+        <span className={`px-3 py-1 rounded-md text-caption font-bold whitespace-nowrap ${getStatusStyle(application.status)}`}>
           {getStatusText(application.status)}
         </span>
       </div>
