@@ -11,5 +11,6 @@ export function noticeToCard(n: Notice): CardProps {
     workhour: n.workhour,
     hourlyPay: n.hourlyPay,
     originalHourlyPay: n.shop.originalHourlyPay,
+    href: `/jobs/${n.id}?shopId=${n.shop.id}`,
   };
 }
