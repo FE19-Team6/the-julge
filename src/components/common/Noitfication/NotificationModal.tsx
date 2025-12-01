@@ -32,6 +32,7 @@ const NotificationModal = ({ open, onClose, items }: Props) => {
         bg-red-10 shadow
         flex flex-col
         overflow-hidden
+        z-100
       "
     >
       {/* 헤더 */}
