@@ -12,7 +12,7 @@ export default async function MainLayout({
   return (
     <div className="min-h-screen flex flex-col">
       <Header userType={userType} />
-      <main className="flex-1 w-full max-w-[1200px] mx-auto">{children}</main>
+      <main className="flex-1 w-full mx-auto">{children}</main>
       {/* 푸터 완성되면 아래 지우고 컴포넌트 교체 */}
       <footer className="w-full bg-gray-10 py-[37px] px-[238px] flex flex-col gap-2 text-gray-500 text-sm">
         <span>© THE JULGE</span>

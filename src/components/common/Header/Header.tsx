@@ -30,7 +30,7 @@ const Header = ({ userType }: HeaderProps) => {
   };
 
   return (
-    <header className="w-full h-[70px] bg-white">
+    <header className="sticky top-0 z-50 w-full h-[70px] bg-white">
       {/* 로고 */}
       <div className="max-w-[1200px] mx-auto h-full flex items-center justify-between px-4">
         <Link href="/" className="cursor-pointer select-none">
