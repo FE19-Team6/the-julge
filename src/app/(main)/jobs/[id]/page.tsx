@@ -120,7 +120,7 @@ export default async function NoticeDetailPage({
       />
 
       {/* 추가: 최근 본 공고 리스트 */}
-      <RecentViewedSection />
+      {userType === "employee" && <RecentViewedSection />}
     </>
   );
 }
