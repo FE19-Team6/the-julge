@@ -25,3 +25,13 @@ export interface ApplicantItem {
   phone: string;
   status: "pending" | "approved" | "rejected" | "canceled";
 }
+
+export type ApplicantStatus = "pending" | "approved" | "rejected" | "canceled";
+
+export interface ApplicantItem {
+  id: string;
+  name: string;
+  message: string;
+  phone: string;
+  status: ApplicantStatus;
+}

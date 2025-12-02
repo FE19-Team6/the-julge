@@ -30,7 +30,7 @@ import { BUTTON_VARIANTS, BUTTON_SIZES, BUTTON_BASE } from "./buttonVariants";
 
 export type ButtonProps = ComponentPropsWithoutRef<"button"> & {
   children: ReactNode;
-  variant?: "primary" | "outline" | "disabled" | "custom";
+  variant?: "primary" | "outline" | "disabled" | "approve" | "custom";
   size?: "lg" | "md" | "sm" | "full" | "address" | "addressBedge";
 };
 
