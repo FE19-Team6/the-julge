@@ -9,6 +9,7 @@ export async function POST() {
     cookieStore.delete("token");
     cookieStore.delete("userType");
     cookieStore.delete("userId");
+    cookieStore.delete("userAddress");
 
     return NextResponse.json({ success: true });
   } catch (error) {
