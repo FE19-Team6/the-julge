@@ -20,7 +20,7 @@ export default function StoreDetailClient({ store, notices, hasMore }: Props) {
   return (
     <div className="w-full flex justify-center">
       {/* Figma: padding 60px 상하 / 238px 좌우 */}
-      <div className="w-full max-w-[1600px] px-[238px] py-[60px] flex flex-col gap-[60px]">
+      <div className="w-full max-w-[964px] pt-[60px] flex flex-col gap-[30px]">
         {/* 타이틀 */}
         <h1 className="text-xl font-bold">내 가게</h1>
 
@@ -55,7 +55,7 @@ export default function StoreDetailClient({ store, notices, hasMore }: Props) {
         />
 
         {/* 공고 영역 */}
-        <section className="flex flex-col gap-6">
+        <section className="flex flex-col gap-6 mt-10 mb-30">
           <h2 className="text-xl font-semibold">등록한 공고</h2>
 
           {!hasPosts ? (
