@@ -32,20 +32,22 @@ export default function ApplicationCard({ application }: ApplicationCardProps) {
       case "rejected":
         return "거절";
       case "canceled":
-        return "대기중";
+        return "지원취소";
       case "pending":
         return "대기중";
     }
   };
 
   return (
-    <div className={clsx(
-      // 모바일: 세로 정렬, 태블릿 이상: 가로 그리드
-      "flex flex-col gap-2 md:grid md:grid-cols-[2fr_3fr_2fr_1fr] md:gap-4",
-      "py-4 px-4 md:px-6",
-      "border-b border-gray-20 hover:bg-gray-5",
-      "md:items-center"
-    )}>
+    <div
+      className={clsx(
+        // 모바일: 세로 정렬, 태블릿 이상: 가로 그리드
+        "flex flex-col gap-2 md:grid md:grid-cols-[2fr_3fr_2fr_1fr] md:gap-4",
+        "py-4 px-4 md:px-6",
+        "border-b border-gray-20 hover:bg-gray-5",
+        "md:items-center"
+      )}
+    >
       {/* 모바일: 가게명 + 배지 한 줄 */}
       <div className="flex justify-between items-center md:contents">
         {/* 가게 */}
@@ -55,7 +57,9 @@ export default function ApplicationCard({ application }: ApplicationCardProps) {
 
         {/* 모바일: 상태 배지 */}
         <div className="md:hidden">
-          <span className={`px-2 py-1 rounded-md text-caption font-bold whitespace-nowrap ${getStatusStyle(application.status)}`}>
+          <span
+            className={`px-2 py-1 rounded-md text-caption font-bold whitespace-nowrap ${getStatusStyle(application.status)}`}
+          >
             {getStatusText(application.status)}
           </span>
         </div>
@@ -78,7 +82,9 @@ export default function ApplicationCard({ application }: ApplicationCardProps) {
 
       {/* 데스크톱: 상태 배지 */}
       <div className="hidden md:flex items-center">
-        <span className={`px-3 py-1 rounded-md text-caption font-bold whitespace-nowrap ${getStatusStyle(application.status)}`}>
+        <span
+          className={`px-3 py-1 rounded-md text-caption font-bold whitespace-nowrap ${getStatusStyle(application.status)}`}
+        >
           {getStatusText(application.status)}
         </span>
       </div>

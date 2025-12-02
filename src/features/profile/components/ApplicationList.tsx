@@ -1,13 +1,10 @@
-// src/features/profile/components/ApplicationList.tsx
-
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import Button from "@/src/components/common/Button/Button";
 import ApplicationCard from "./ApplicationCard";
 import Pagination from "@/src/components/Pagination/Pagination";
 import { Application } from "@/src/features/profile/type";
+import LinkButton from "@/src/components/common/Button/LinkButton";
 
 type ApplicationListProps = {
   applications: Application[];
@@ -21,21 +18,20 @@ const ITEMS_PER_PAGE = 5;
 - 신청 내역이 있으면 테이블 형태로 표시
 - 5개 이상일 때 페이지네이션 표시
 */
-export default function ApplicationList({ applications }: ApplicationListProps) {
+export default function ApplicationList({
+  applications,
+}: ApplicationListProps) {
   const [currentPage, setCurrentPage] = useState(1);
 
   // 신청 내역이 없을 때
   if (applications.length === 0) {
     return (
       <div className="text-center py-12 border border-gray-20 rounded-xl bg-white">
-        <p className="text-gray-50 text-body1 mb-6">
-          아직 신청 내역이 없어요.
-        </p>
-        <Link href="/notices">
-          <Button variant="primary" size="lg">
-            공고 보러가기
-          </Button>
-        </Link>
+        <p className="text-gray-50 text-body1 mb-6">아직 신청 내역이 없어요.</p>
+        {/* 유진 수정 */}
+        <LinkButton href={`/`} variant="primary" size="lg">
+          공고 보러가기
+        </LinkButton>
       </div>
     );
   }
